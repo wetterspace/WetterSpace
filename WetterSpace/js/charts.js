@@ -174,11 +174,11 @@ window.onresize = function(){ createTables(); }
           italic: false 
         }
       },
-      animation: {
-        duration: 500,
-        easing: 'inAndOut',
-        startup: true
-      }
+      // animation: {
+      //   duration: 500,
+      //   easing: 'inAndOut',
+      //   startup: true
+      // }
     }
   });
   
