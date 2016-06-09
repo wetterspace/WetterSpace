@@ -6774,6 +6774,12 @@ body {
   padding: 60px 0 0 100px;
   color: #9c9c9c;
 }
+.years {
+  margin: 20px 0px;
+  padding: 10px 10px 10px 100px;
+  text-align: right;
+  height: 40px;
+}
 #line_div {
   height: 400px;
 }
@@ -6819,4 +6825,44 @@ svg circle {
   stroke-width: 2;
   stroke: #fff;
 }
-/*# sourceMappingURL=main.css.map */
+.google-visualization-tooltip {
+  background-color: #ddd;
+  border-radius: 3px;
+  min-width: 160px;
+  max-width: 400px;
+  width: auto;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.google-visualization-tooltip .google-visualization-tooltip-item-list {
+  margin: 0;
+  padding: 0;
+}
+.google-visualization-tooltip .google-visualization-tooltip-item-list .google-visualization-tooltip-item:first-child {
+  margin: 0px;
+  font-weight: 900;
+}
+.google-visualization-tooltip .google-visualization-tooltip-item-list .google-visualization-tooltip-item:first-child:first-child {
+  margin: 0px;
+  padding: 10px 0 0 0 ;
+  font-size: 16px!important;
+}
+.google-visualization-tooltip .google-visualization-tooltip-item-list .google-visualization-tooltip-item:first-child:first-child span {
+  font-size: 20px!important;
+  font-family: 'Roboto' !important;
+  color: #555;
+}
+.google-visualization-tooltip .google-visualization-tooltip-item-list .google-visualization-tooltip-item:last-child span {
+  margin: 0;
+}
+.google-visualization-tooltip .google-visualization-tooltip-item-list .google-visualization-tooltip-item:last-child span:first-child {
+  font-size: 12px!important;
+}
+.google-visualization-tooltip .google-visualization-tooltip-item-list .google-visualization-tooltip-item:last-child span:last-child {
+  font-size: 45px!important;
+  display: block;
+  clear: both;
+  width: 100%;
+}

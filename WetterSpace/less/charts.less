@@ -20,6 +20,14 @@
 	color: darken(@baseColor, 35%);
 }
 
+.years {
+	margin: 20px 0px;
+	padding: 10px 10px 10px 100px;
+	text-align: right;
+	// background-color: #eee;
+	height: 40px;
+}
+
 #line_div {
 	height: 400px;
 }
@@ -38,7 +46,7 @@ div.col-md-2 .metrics-buttons {
 		list-style: none!important;
 		li {
 			list-style: none;
-	    }
+		}
 	}
 }
 
@@ -78,3 +86,60 @@ svg  {
 	}
 
 }
+
+.google-visualization-tooltip {
+	background-color: #ddd;
+	border-radius: 3px;
+	min-width: 160px;
+	max-width: 400px;
+	width: auto;
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	// height: 80px;
+	.google-visualization-tooltip-item-list {
+		// background-color: pink;
+		margin: 0;
+		padding: 0;
+		.google-visualization-tooltip-item {
+
+			&:first-child {
+				margin: 0px;
+				font-weight: 900;
+				&:first-child {
+					// background-color: red;
+					margin: 0px;
+					padding: 10px 0 0 0 ;
+					font-size: 16px!important;
+					span {
+						font-size: 20px!important;
+						font-family: 'Roboto'!important;
+						color: #555;
+					}
+				}
+
+			}
+			&:last-child {
+				span {
+					margin: 0;
+					&:first-child {
+						font-size: 12px!important;
+						// background-color: red!important;	
+					}
+
+					&:last-child {
+						font-size: 45px!important;
+						display: block;
+						clear: both;
+						width: 100%;
+						// background-color: orange;	
+					}
+				}
+			}
+		}
+	}
+}
+
+
+

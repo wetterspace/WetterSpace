@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>JSON Sample</title>
+</head>
+
+<body>
+    <div id="placeholder"></div>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+    $.getJSON("/json_data/Lufttemperatur_Tagesmaximum.json", function(data) {
+        var items = [];
+        var unitVal = data.Lufttemperatur_Tagesmaximum.unit;
+        $.each(data.Lufttemperatur_Tagesmaximum.data, function(key, val) {
+            $.each(val, function(dateVal, tempVal) {
+                items.push(key + " _ " + dateVal + " _ " + tempVal + unitVal + "<br />");
+            });
+        });
+
+        $("<div/>", {
+            "class": "my-new-list",
+            html: items.join("")
+        }).appendTo("body");
+    });
+    </script>
+</body>
+
+</html>

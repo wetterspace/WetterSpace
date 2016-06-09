@@ -72,8 +72,8 @@
 		},
 	"\/bower_components\/bootstrap\/dist\/js\/bootstrap.js": {
 		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 1,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/bower_components\/bootstrap\/dist\/js\/bootstrap.js",
 		"outputAbbreviatedPath": "\/bower_components\/bootstrap\/dist\/js\/min\/bootstrap-min.js",
 		"outputPathIsOutsideProject": 0,
@@ -83,8 +83,8 @@
 		},
 	"\/bower_components\/bootstrap\/dist\/js\/bootstrap.min.js": {
 		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 1,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/bower_components\/bootstrap\/dist\/js\/bootstrap.min.js",
 		"outputAbbreviatedPath": "\/bower_components\/bootstrap\/dist\/js\/min\/bootstrap.min-min.js",
 		"outputPathIsOutsideProject": 0,
@@ -3041,7 +3041,7 @@
 		},
 	"\/css\/charts-test.css": {
 		"fileType": 16,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/css\/charts-test.css",
 		"outputAbbreviatedPath": "No Output Path",
@@ -3123,7 +3123,7 @@
 		},
 	"\/js\/main-min.js": {
 		"fileType": 64,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/main-min.js",
 		"outputAbbreviatedPath": "\/js\/min\/main-min-min.js",
@@ -3137,9 +3137,9 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/main.js",
-		"outputAbbreviatedPath": "\/js\/main-min.js",
+		"outputAbbreviatedPath": "\/js\/min\/main-min.js",
 		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 1,
+		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
@@ -3156,7 +3156,7 @@
 		},
 	"\/js\/min\/cha-min.js": {
 		"fileType": 64,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/min\/cha-min.js",
 		"outputAbbreviatedPath": "\/js\/min\/min\/cha-min-min.js",
@@ -3167,7 +3167,7 @@
 		},
 	"\/js\/min\/chars-min.js": {
 		"fileType": 64,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/min\/chars-min.js",
 		"outputAbbreviatedPath": "\/js\/min\/min\/chars-min-min.js",
@@ -3189,7 +3189,7 @@
 		},
 	"\/js\/min\/functions-min.js": {
 		"fileType": 64,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/min\/functions-min.js",
 		"outputAbbreviatedPath": "\/js\/min\/min\/functions-min-min.js",
@@ -3211,7 +3211,7 @@
 		},
 	"\/js\/min\/mapMain-min.js": {
 		"fileType": 64,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/min\/mapMain-min.js",
 		"outputAbbreviatedPath": "\/js\/min\/min\/mapMain-min-min.js",
@@ -3222,7 +3222,7 @@
 		},
 	"\/js\/min\/w-min.js": {
 		"fileType": 64,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/js\/min\/w-min.js",
 		"outputAbbreviatedPath": "\/js\/min\/min\/w-min-min.js",
@@ -3230,6 +3230,92 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
+		},
+	"\/json-test.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/json-test.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/json_data\/Lufttemperatur_Tagesmaximum.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/json_data\/Lufttemperatur_Tagesmaximum.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/json_data\/Lufttemperatur_Tagesmaximum-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/json_data\/Lufttemperatur_Tagesminimum.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/json_data\/Lufttemperatur_Tagesminimum.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/json_data\/Lufttemperatur_Tagesminimum-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/json_data\/Lufttemperatur_Tagesmittel.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/json_data\/Lufttemperatur_Tagesmittel.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/json_data\/Lufttemperatur_Tagesmittel-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/json_data\/Neuschneehoehe.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/json_data\/Neuschneehoehe.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/json_data\/Neuschneehoehe-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/json_data\/Niederschlagshoehe.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/json_data\/Niederschlagshoehe.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/json_data\/Niederschlagshoehe-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/json_data\/Relative_Luftfeuchte.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/json_data\/Relative_Luftfeuchte.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/json_data\/Relative_Luftfeuchte-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/json_data\/Schneehoehe.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/json_data\/Schneehoehe.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/json_data\/Schneehoehe-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
 		},
 	"\/less\/charts.less": {
 		"allowInsecureImports": 0,
@@ -3253,7 +3339,7 @@
 		},
 	"\/less\/main.less": {
 		"allowInsecureImports": 0,
-		"createSourceMap": 1,
+		"createSourceMap": 0,
 		"disableJavascript": 0,
 		"fileType": 1,
 		"ieCompatibility": 1,
@@ -3290,6 +3376,27 @@
 		"strictImports": 0,
 		"strictMath": 0,
 		"strictUnits": 0
+		},
+	"\/README.md": {
+		"criticStyle": 0,
+		"enableFootnotes": 1,
+		"enableLabels": 1,
+		"enableSmartQuotes": 1,
+		"escapeLineBreaks": 0,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/README.md",
+		"maskEmailAddresses": 1,
+		"outputAbbreviatedPath": "\/README.html",
+		"outputFormat": 0,
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"parseMetadata": 1,
+		"processHTML": 0,
+		"randomFootnoteNumbers": 0,
+		"useCompatibilityMode": 0
 		}
 	},
 "hooks": [
