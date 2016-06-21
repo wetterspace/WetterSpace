@@ -1,5 +1,4 @@
   google.load('visualization', '1', { packages: ['controls', 'corechart'] });
-
   google.setOnLoadCallback(createTables);
   // window.onresize = function(){ createTables(); }
   // google.charts.load('current', {'packages':['controls']});
@@ -9,17 +8,102 @@
 
   var myDashboard;
   var fileName="Lufttemperatur_Tagesmaximum";
-  var requestedDate = "2014";
+  var requestedDate = "2012";
   var titleName = "Lufttemperatur Höchstwert";
+// Define the containers for the charts
 
-  $("button.weatherMetric").click(function(){
+var v_line_div = "line_div1";
+var v_control_div = "control_div1";
+var v_table_div = "table_div1";
+var v_dashboard_div = "#dashboard_div1";
+var v_chartTitle_div = "#chartTitle1";
+var chartNum = 1;
+
+
+
+  // $("#Lufttemperatur_Tagesmaximum").click(function() {
+  //   // alert("id="+$(this).attr("id"));
+  //   if ($('label').is('.active'))
+  //     { alert("remove")}
+  //   else {
+  //     alert("draw")
+  //   } 
+  // })
+
+  $("label.weatherMetric").click(function(){
+    // alert($(this).parent();
     fileName = $( this ).attr('id');
-    // alert(fileName);
-    createTables();
-  });
+    // alert("id="+$(this).attr("id"));
+    titleName = $(this).text();
+    switch (fileName) {
+      case "Lufttemperatur_Tagesmaximum":
+      v_line_div = "line_div1";
+      v_control_div = "control_div1";
+      v_table_div = "table_div1";
+      v_dashboard_div = "#dashboard_div1";
+      v_chartTitle_div = "#chartTitle1";
+      break;
+      case "Lufttemperatur_Tagesminimum":
+      v_line_div = "line_div2";
+      v_control_div = "control_div2";
+      v_table_div = "table_div2";
+      v_dashboard_div = "#dashboard_div2";
+      v_chartTitle_div = "#chartTitle2";
+      break;
+      case "Lufttemperatur_Tagesmittel":
+      v_line_div = "line_div3";
+      v_control_div = "control_div3";
+      v_table_div = "table_div3";
+      v_dashboard_div = "#dashboard_div3";
+      v_chartTitle_div = "#chartTitle3";
+      break;
+      case "Neuschneehoehe":
+      v_line_div = "line_div4";
+      v_control_div = "control_div4";
+      v_table_div = "table_div4";
+      v_dashboard_div = "#dashboard_div4";
+      v_chartTitle_div = "#chartTitle4";
+      break;
+      case "Niederschlagshoehe":
+      v_line_div = "line_div5";
+      v_control_div = "control_div5";
+      v_table_div = "table_div5";
+      v_dashboard_div = "#dashboard_div5";
+      v_chartTitle_div = "#chartTitle5";
+      break;
+      case "Relative_Luftfeuchte":
+      v_line_div = "line_div6";
+      v_control_div = "control_div6";
+      v_table_div = "table_div6";
+      v_dashboard_div = "#dashboard_div6";
+      v_chartTitle_div = "#chartTitle6";
+      break;
+      case "Schneehoehe":
+      v_line_div = "line_div7";
+      v_control_div = "control_div7";
+      v_table_div = "table_div7";
+      v_dashboard_div = "#dashboard_div7";
+      v_chartTitle_div = "#chartTitle7";
+      break;
 
-    $("button.weatherMetric").click(function(){
-    titleName = $( this ).html();
+
+    }
+
+
+
+    var numItems = $('.dashboardDivArea').length;
+    // alert("dashboardDivArea items = "+numItems);
+
+    if ($(this).is('.active')) {
+      // alert("hide");
+      $(v_dashboard_div).hide();
+
+    }
+
+    else {
+      // alert("show");
+      $(v_dashboard_div).show();
+    }
     // alert(fileName);
     createTables();
   });
@@ -42,9 +126,9 @@
       var fileURL = "/json_data/"+fileName+".json";
       $.getJSON(fileURL, function(jsonObject) {
         $.each(jsonObject[fileName].data, function(key, valData) {
-          $("#chartTitle").text(titleName + " (" + jsonObject[fileName].unit + ")");
+          $(v_chartTitle_div).text(titleName + " (" + jsonObject[fileName].unit + ")");
           $.each(valData, function(dateVal, temperatureVal) {
-            console.log("date:",dateVal);
+            // console.log("date:",dateVal);
             temperatureVal = parseInt(temperatureVal.replace(",", "."));
             if (dateVal.substr(0, 4) == requestedDate) {
               myData.addRows([
@@ -57,7 +141,7 @@
 
       //End JSON data
       // Create a dashboard.
-      var dash_container = document.getElementById('dashboard_div'),
+      var dash_container = document.getElementById('dashboard_div1'),
       myDashboard = new google.visualization.Dashboard(dash_container);
 
       var startDate = "-05-1";
@@ -65,7 +149,7 @@
       // Create a date range slider
       var myDateSlider = new google.visualization.ControlWrapper({
         'controlType': 'ChartRangeFilter',
-        'containerId': 'control_div',
+        'containerId': v_control_div,
         'options': {
           'ui': {
             'chartOptions': {
@@ -99,7 +183,7 @@
       // Table visualization
       var myTable = new google.visualization.ChartWrapper({
         'chartType': 'Table',
-        'containerId': 'table_div'
+        'containerId': v_table_div
 
       });
 
@@ -113,7 +197,7 @@
       // Line chart visualization
       var myLine = new google.visualization.ChartWrapper({
         chartType: 'LineChart',
-        containerId: 'line_div',
+        containerId: v_line_div,
         backgroundColor: "#ffffff",
 
         options: {

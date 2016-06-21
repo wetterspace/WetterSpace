@@ -6758,7 +6758,7 @@ body {
   min-height: 85px;
   color: #fff;
 }
-#dashboard_div {
+.dashboardDivArea {
   padding: 0px 0px 50px 0px;
   margin: 0px;
   color: #888;
@@ -6780,10 +6780,10 @@ body {
   text-align: right;
   height: 40px;
 }
-#line_div {
+.lineDivArea {
   height: 400px;
 }
-#control_div {
+.controlDivArea {
   height: 70px;
   width: 100%;
   position: relative;
