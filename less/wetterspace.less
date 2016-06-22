@@ -1,0 +1,63 @@
+/*color definition */
+
+@main_bg_color: #006E9F;
+@main_txt_color: #dddddd;
+@tempcolor: #dddddd;
+
+
+
+
+
+/* main styling of the elements */
+
+body {
+	padding-top: 85px!important;
+	font-family: 'Roboto', sans-serif!important;
+}
+
+.navbar-default  {
+	background-color: @main_bg_color;
+
+	.container-fluid {
+		min-height: 85px;
+		.navbar-collapse {
+			padding-top:15px;
+		}
+	}
+
+	.navbar-nav {	
+		color: @main_txt_color;
+		> li {
+			> a {
+				color: @main_txt_color;
+				&:hover {
+					color: lighten(@main_txt_color, 10%);
+				}
+			}
+
+		}
+	}
+}
+
+
+.main-content {
+	// .googlemaps {
+	// 	height:400px;
+	// }
+
+	// .chartwetter {
+	// 	//height:400px;
+	// 	padding: 0px!important;
+	// }
+}
+/*
+.navbar a.dropdown-toggle, .navbar-default .navbar-nav > li > a {
+	color: @main_txt_color;
+}
+*/
+
+.footer {
+	background-color: @main_bg_color;
+	min-height: 85px;
+	color: #fff;
+}

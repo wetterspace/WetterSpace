@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>WetterSpace</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link rel="icon" href="img/mapMarkerNor.png">
+  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> 
+  <link href="css/main.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,900,500,700' rel='stylesheet' type='text/css'>
+  <!-- Custom CSS -->
+  <style>
+    body {
+      padding-top: 70px;
+      /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+  </style>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"> 
+        </script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <!-- jQuery Version 1.11.1 -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+      </head>
+
+      <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#"><img src="img/logo.png" /></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <form class="navbar-form navbar-left" role="search">
+                <div class="form-group" id="floating-panel">
+                  <input id="address" type="textbox" class="form-control" placeholder="ZIP code" value="">
+                  <input id="submit" type="button" value="Search" class="btn btn-default">
+
+          <!--  <input id="address" type="textbox" value="Sydney, NSW">
+          <input id="submit" type="button" value="Geocode">  -->
+                </div>
+             </form>
+      <!-- <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="charts_test.html">Charts</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <comment>
+          </ul>
+        </li>
+      </ul> -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Page Content -->
+<div class="container-fluid main-content">
+
+  <div class="row">
+    <div class="col-md-12 googlemaps" id="map">
+     <script src= "js/map.js">   
+     </script>
+     <script src="js/main.min.js"></script>
+   </div>
+ </div>
+
+ <!-- /.row -->
+ <div class="row">
+   <div class="col-md-9 chartwetter">
+     <!-- First Chart Lufttemperatur Höchstwert-->
+     <div id="dashboard_div1" class="dashboardDivArea">
+      <div class="chartTitle" id="chartTitle1">Chart 1</div>
+      <div class="years">
+        <button id="2011" class="currentYear btn btn-default btn-xs">2011</button>
+        <button id="2012" class="currentYear btn btn-default btn-xs">2012</button>
+        <button id="2013" class="currentYear btn btn-default btn-xs">2013</button>
+        <button id="2014" class="currentYear btn btn-default btn-xs">2014</button>
+        <button id="2015" class="currentYear btn btn-default btn-xs">2015</button>
+        <button id="2016" class="currentYear btn btn-default btn-xs">2016</button>
+      </div>
+      <div>
+        <div id="line_div1" class="lineDivArea"><!-- Line chart renders here --></div>
+        <div id="control_div1" class="controlDivArea"><!-- Controls renders here --></div>
+        <div id="table_div1" class="tableDivArea" style="display: none;"><!-- Table renders here --></div>
+      </div>
+    </div>
+    <!-- Second Chart Lufttemperatur Tiefstwert-->
+    <div id="dashboard_div2" class="dashboardDivArea" style="display: none;">
+      <div class="chartTitle" id="chartTitle2">Chart 2</div>
+      <div class="years">
+        <button id="2011" class="currentYear btn btn-default btn-xs">2011</button>
+        <button id="2012" class="currentYear btn btn-default btn-xs">2012</button>
+        <button id="2013" class="currentYear btn btn-default btn-xs">2013</button>
+        <button id="2014" class="currentYear btn btn-default btn-xs">2014</button>
+        <button id="2015" class="currentYear btn btn-default btn-xs">2015</button>
+        <button id="2016" class="currentYear btn btn-default btn-xs">2016</button>
+      </div>
+      <div>
+      <div id="line_div2" class="lineDivArea"><!-- Line chart renders here --></div>
+        <div id="control_div2" class="controlDivArea"><!-- Controls renders here --></div>
+        <div id="table_div2" class="tableDivArea" style="display: none;"><!-- Table renders here --></div>
+      </div>
+    </div>
+
+    <!-- Third Chart Lufttemperatur Mittelwert-->
+    <div id="dashboard_div3" class="dashboardDivArea" style="display: none;">
+      <div class="chartTitle" id="chartTitle3">Chart 3</div>
+      <div class="years">
+        <button id="2011" class="currentYear btn btn-default btn-xs">2011</button>
+        <button id="2012" class="currentYear btn btn-default btn-xs">2012</button>
+        <button id="2013" class="currentYear btn btn-default btn-xs">2013</button>
+        <button id="2014" class="currentYear btn btn-default btn-xs">2014</button>
+        <button id="2015" class="currentYear btn btn-default btn-xs">2015</button>
+        <button id="2016" class="currentYear btn btn-default btn-xs">2016</button>
+      </div>
+      <div>
+        <div id="line_div3" class="lineDivArea"><!-- Line chart renders here --></div>
+        <div id="control_div3" class="controlDivArea"><!-- Controls renders here --></div>
+        <div id="table_div3" class="tableDivArea" style="display: none;"><!-- Table renders here --></div>
+      </div>
+    </div>
+
+
+    <!-- Fourth Chart Neuschneehöhe -->
+    <div id="dashboard_div4" class="dashboardDivArea" style="display: none;">
+      <div class="chartTitle" id="chartTitle4">Chart 4</div>
+      <div class="years">
+        <button id="2011" class="currentYear btn btn-default btn-xs">2011</button>
+        <button id="2012" class="currentYear btn btn-default btn-xs">2012</button>
+        <button id="2013" class="currentYear btn btn-default btn-xs">2013</button>
+        <button id="2014" class="currentYear btn btn-default btn-xs">2014</button>
+        <button id="2015" class="currentYear btn btn-default btn-xs">2015</button>
+        <button id="2016" class="currentYear btn btn-default btn-xs">2016</button>
+      </div>
+      <div>
+        <div id="line_div4" class="lineDivArea"><!-- Line chart renders here --></div>
+        <div id="control_div4" class="controlDivArea"><!-- Controls renders here --></div>
+        <div id="table_div4" class="tableDivArea" style="display: none;"><!-- Table renders here --></div>
+      </div>
+    </div>
+
+    <!-- Fifth Chart Niederschlagshöhe -->
+    <div id="dashboard_div5" class="dashboardDivArea" style="display: none;">
+      <div class="chartTitle" id="chartTitle5">Chart 5</div>
+      <div class="years">
+        <button id="2011" class="currentYear btn btn-default btn-xs">2011</button>
+        <button id="2012" class="currentYear btn btn-default btn-xs">2012</button>
+        <button id="2013" class="currentYear btn btn-default btn-xs">2013</button>
+        <button id="2014" class="currentYear btn btn-default btn-xs">2014</button>
+        <button id="2015" class="currentYear btn btn-default btn-xs">2015</button>
+        <button id="2016" class="currentYear btn btn-default btn-xs">2016</button>
+      </div>
+      <div>
+        <div id="line_div5" class="lineDivArea"><!-- Line chart renders here --></div>
+        <div id="control_div5" class="controlDivArea"><!-- Controls renders here --></div>
+        <div id="table_div5" class="tableDivArea" style="display: none;"><!-- Table renders here --></div>
+      </div>
+    </div>
+
+
+    <!-- sixth Chart Relative Luftfeuchte -->
+    <div id="dashboard_div6" class="dashboardDivArea" style="display: none;">
+      <div class="chartTitle" id="chartTitle6">Chart 6</div>
+      <div class="years">
+        <button id="2011" class="currentYear btn btn-default btn-xs">2011</button>
+        <button id="2012" class="currentYear btn btn-default btn-xs">2012</button>
+        <button id="2013" class="currentYear btn btn-default btn-xs">2013</button>
+        <button id="2014" class="currentYear btn btn-default btn-xs">2014</button>
+        <button id="2015" class="currentYear btn btn-default btn-xs">2015</button>
+        <button id="2016" class="currentYear btn btn-default btn-xs">2016</button>
+      </div>
+      <div>
+        <div id="line_div6" class="lineDivArea"><!-- Line chart renders here --></div>
+        <div id="control_div6" class="controlDivArea"><!-- Controls renders here --></div>
+        <div id="table_div6" class="tableDivArea" style="display: none;"><!-- Table renders here --></div>
+      </div>
+    </div>
+
+    <!-- seventh Chart Gesamtschneehöhe -->
+    <div id="dashboard_div7" class="dashboardDivArea" style="display: none;">
+      <div class="chartTitle" id="chartTitle7">Chart 7</div>
+      <div class="years">
+        <button id="2011" class="currentYear btn btn-default btn-xs">2011</button>
+        <button id="2012" class="currentYear btn btn-default btn-xs">2012</button>
+        <button id="2013" class="currentYear btn btn-default btn-xs">2013</button>
+        <button id="2014" class="currentYear btn btn-default btn-xs">2014</button>
+        <button id="2015" class="currentYear btn btn-default btn-xs">2015</button>
+        <button id="2016" class="currentYear btn btn-default btn-xs">2016</button>
+      </div>
+      <div>
+        <div id="line_div7" class="lineDivArea"><!-- Line chart renders here --></div>
+        <div id="control_div7" class="controlDivArea"><!-- Controls renders here --></div>
+        <div id="table_div7" class="tableDivArea" style="display: none;"><!-- Table renders here --></div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="col-md-3 btn-group" data-toggle="buttons">
+    <ul id="weatherMetrics"> 
+
+      <li>
+        <label  id="Lufttemperatur_Tagesmaximum" class=" weatherMetric btn btn-xs btn-primary active ">
+          <input type="checkbox" checked autocomplete="off" >Lufttemperatur Höchstwert
+        </label>
+      </li>
+      <!-- <li><button id="Lufttemperatur_Tagesmaximum" class="weatherMetric btn btn-primary btn-xs">Lufttemperatur Höchstwert</button></li> -->
+
+      <li>
+        <label  id="Lufttemperatur_Tagesminimum" class=" weatherMetric btn btn-xs btn-primary ">
+          <input type="checkbox" autocomplete="off" > Lufttemperatur Tiefstwert
+        </label>
+      </li>
+
+
+      <li>
+        <label  id="Lufttemperatur_Tagesmittel" class=" weatherMetric btn btn-xs btn-primary ">
+          <input type="checkbox" autocomplete="off" > Lufttemperatur Mittelwert
+        </label>
+      </li>
+
+
+      <li>
+        <label  id="Neuschneehoehe" class=" weatherMetric btn btn-xs btn-primary ">
+          <input type="checkbox" autocomplete="off" > Neuschneehöhe
+        </label>
+      </li>
+
+      <li>
+        <label  id="Niederschlagshoehe" class=" weatherMetric btn btn-xs btn-primary ">
+          <input type="checkbox" autocomplete="off" > Niederschlagshöhe
+        </label>
+      </li>
+
+      <li>
+        <label  id="Relative_Luftfeuchte" class=" weatherMetric btn btn-xs btn-primary ">
+          <input type="checkbox" autocomplete="off" > Relative Luftfeuchte
+        </label>
+      </li>
+
+      <li>
+        <label  id="Schneehoehe" class=" weatherMetric btn btn-xs btn-primary ">
+          <input type="checkbox" autocomplete="off" > Gesamtschneehöhe
+        </label>
+      </li>
+
+
+      <!-- <li><button id="Lufttemperatur_Tagesminimum" class="weatherMetric  btn btn-primary btn-xs">Lufttemperatur Tiefstwert</button></li> -->
+      <!-- <li><button id="Lufttemperatur_Tagesmittel" class="weatherMetric btn btn-primary btn-xs">Lufttemperatur Mittelwert</button></li> -->
+      <!-- <li><button id="Neuschneehoehe" class="weatherMetric btn btn-primary btn-xs">Neuschneehöhe</button></li> -->
+      <!-- <li><button id="Niederschlagshoehe" class="weatherMetric btn btn-primary btn-xs">Niederschlagshöhe</button></li> -->
+      <!-- <li><button id="Relative_Luftfeuchte" class="weatherMetric btn btn-primary btn-xs">Relative Luftfeuchte</button></li> -->
+      <!-- <li><button id="Schneehoehe" class="weatherMetric btn btn-primary btn-xs">Gesamtschneehöhe</button></li> -->
+     <!--  <li><button class="btn btn-primary btn-xs">Windspitze</button></li>
+      <li><button class="btn btn-primary btn-xs">Sonnenscheindauer</button></li> -->
+    </ul>
+
+  </div>
+  
+</div>
+<!-- /.row -->
+
+</div>
+
+<!-- Footer -->
+<div class="footer container-fluid">
+  <div class="row">
+   <div class="col-md-12">Impressum</div>
+ </div>
+</div>
+<!-- /.footer -->
+
+
+<script src="js/charts.js"> </script>
+ 
+<!-- Bootstrap Core JavaScript -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- google maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw79V9rKFksZLgO3_PBX_LDbNjqBO0jAQ&callback=initMap"
+async defer></script>
+
+</body>
+
+</html>
