@@ -14,7 +14,7 @@
 
   <!-- Bootstrap Core CSS -->
   <link rel="icon" href="img/mapMarkerNor.png">
-  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> 
+  <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,900,500,700' rel='stylesheet' type='text/css'>
   <!-- Custom CSS -->
@@ -31,12 +31,12 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"> 
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
         </script>
         <script type="text/javascript" src="http://www.google.com/jsapi"></script>
         <!-- jQuery Version 1.11.1 -->
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
-
+        <script src="js/ajax.js"></script>
       </head>
 
       <body>
@@ -60,6 +60,8 @@
               <form class="navbar-form navbar-left" role="search">
                 <div class="form-group" id="floating-panel">
                   <input id="address" type="textbox" class="form-control" placeholder="ZIP code" value="">
+                  <input id="start_date" type="date" class="form-control" placeholder="Start Date" value="">
+                  <input id="end_date" type="date" class="form-control" placeholder="End Date" value="">
                   <input id="submit" type="button" value="Search" class="btn btn-default">
 
           <!--  <input id="address" type="textbox" value="Sydney, NSW">
@@ -88,7 +90,7 @@
 
   <div class="row">
     <div class="col-md-12 googlemaps" id="map">
-     <script src= "js/map.js">   
+     <script src= "js/map.js">
      </script>
      <script src="js/main.min.js"></script>
    </div>
@@ -229,7 +231,7 @@
 
 
   <div class="col-md-3 btn-group" data-toggle="buttons">
-    <ul id="weatherMetrics"> 
+    <ul id="weatherMetrics">
 
       <li>
         <label  id="Lufttemperatur_Tagesmaximum" class=" weatherMetric btn btn-xs btn-primary active ">
@@ -288,7 +290,7 @@
     </ul>
 
   </div>
-  
+
 </div>
 <!-- /.row -->
 
@@ -304,7 +306,7 @@
 
 
 <script src="js/charts.js"> </script>
- 
+
 <!-- Bootstrap Core JavaScript -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- google maps -->
