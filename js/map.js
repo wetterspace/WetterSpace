@@ -15,11 +15,6 @@ function initMap() {
   });
 }
 
-
-function getLocationOnClick() {
-
-}
-
 function zoomToPositionOnChange(map, geocoder) {
   var location = document.getElementById("address");
 
