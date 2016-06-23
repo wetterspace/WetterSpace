@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   $("#submit").click(function() {
     var location = $("#address").val();
     var start_date = $("#start_date").val();
@@ -18,6 +17,7 @@ $(document).ready(function() {
       },
       success: function(content) {
         console.log(content);
+        handleResponse(content);
       }
     });
   });

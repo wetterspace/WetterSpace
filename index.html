@@ -36,6 +36,8 @@
         <script type="text/javascript" src="http://www.google.com/jsapi"></script>
         <!-- jQuery Version 1.11.1 -->
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="js/dateValidator.js"></script>
+        <script src="js/responseHandler.js"></script>
         <script src="js/ajax.js"></script>
       </head>
 
@@ -87,7 +89,11 @@
 
 <!-- Page Content -->
 <div class="container-fluid main-content">
-
+  <div class="row" style="background-color:lightblue">
+    <div class="col-md-12 errors" id="errorbox" style="display:none">
+      <p>Something</p>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12 googlemaps" id="map">
      <script src= "js/map.js">
