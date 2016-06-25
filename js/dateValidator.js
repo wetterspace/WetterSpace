@@ -11,7 +11,28 @@ window.onload = function() {
 
   end_date.onchange = function() {
     setDateMax(start_date, end_date);
+
+    var startDate = new Date(start_date.value);
+    var startDateTime = startDate.getTime();
+    var endDate = new Date(end_date.value);
+    var endDateTime = endDate.getTime();
+
+    if (startDateTime > endDateTime) {
+      start_date.value = makeDateString(endDate);
+    }
   }
+
+  start_date.onchange = function () {
+    var startDate = new Date(start_date.value);
+    var startDateTime = startDate.getTime();
+    var endDate = new Date(end_date.value);
+    var endDateTime = endDate.getTime();
+
+    if (startDateTime > endDateTime) {
+      start_date.value = makeDateString(endDate);
+    }
+  }
+
 }
 
 function setDateMax(start_date, end_date) {
@@ -38,4 +59,16 @@ function calcDate(date, days) {
   var newDate = new Date();
   newDate.setTime(daysInMilliseconds);
   return newDate;
+}
+
+function checkDates(start_date, end_date) {
+  var startDate = new Date(start_date.value);
+  var startDateTime = startDate.getTime();
+  var endDate = new Date(end_date.value);
+  var endDateTime = endDate.getTime();
+
+  if (startDateTime > endDateTime) {
+    start_date.value = makeDateString(endDate);
+    end_date.value = makeDateString(start_date);
+  }
 }

@@ -7,7 +7,7 @@ $(document).ready(function() {
     //
     $.ajax({
       type: "POST",
-      // url: "../../cgi-bin/test.cgi",
+      // url: "../../cgi-bin/jsonGenerator.cgi",
       // change to relative URL in production
       url: "https://www.wetter.space/cgi-bin/jsonGenerator.cgi",
       data: {
