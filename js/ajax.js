@@ -16,6 +16,7 @@ $(document).ready(function() {
         end_date:end_date,
       },
       success: function(content) {
+        console.log(content);
         handleResponse(content);
       }
     });

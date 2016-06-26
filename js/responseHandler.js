@@ -4,9 +4,9 @@ function handleResponse(input) {
   var start_date = document.getElementById("start_date");
   var end_date = document.getElementById("end_date");
   var errorbox = document.getElementById("errorbox");
+  var errorStyle = "solid 3px red";
 
   resetErrors(location, start_date,end_date, errorbox);
-
 
   var key = Object.keys(response)[0]
 
@@ -21,23 +21,23 @@ function handleResponse(input) {
 
       switch(property) {
         case "location":
-          location.style.border = "solid 3px red";
+          location.style.border = errorStyle;
           break;
         case "start_date":
-          start_date.style.border = "solid 3px red";
+          start_date.style.border = errorStyle;
           break;
         case "end_date":
-          end_date.style.border = "solid 3px red";
+          end_date.style.border = errorStyle;
           break;
         case "data":
           // no data for this time period
-          end_date.style.border = "solid 3px red";
-          start_date.style.border = "solid 3px red";
+          end_date.style.border = errorStyle;
+          start_date.style.border = errorStyle;
           break;
         default:
-          location.style.border = "solid 3px red";
-          start_date.style.border = "solid 3px red";
-          end_date.style.border = "solid 3px red";
+          location.style.border = errorStyle;
+          start_date.style.border = errorStyle;
+          end_date.style.border = errorStyle;
       }
     }
 
@@ -45,7 +45,7 @@ function handleResponse(input) {
 
     errorbox.innerHTML = errorHTML;
   } else {
-    alert("drawCharts!");
+    // alert("drawCharts!");
   }
 }
 

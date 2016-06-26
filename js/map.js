@@ -1,3 +1,5 @@
+var currentMarker;
+
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
    zoom: 6,
@@ -7,11 +9,8 @@ function initMap() {
   var geocoder = new google.maps.Geocoder();
   zoomToPositionOnChange(map, geocoder);
 
-  google.maps.event.addListener(map, "leftclick", function(event) {
-    var lat = event.latLng.lat();
-    var lng = event.latLng.lng();
-    // populate yor box/field with lat, lng
-    alert("Lat=" + lat + "; Lng=" + lng);
+  map.addListener('click', function(e) {
+    geocodeLatLng(e.latLng, map, geocoder);
   });
 }
 
@@ -24,19 +23,49 @@ function zoomToPositionOnChange(map, geocoder) {
   }
 }
 
-function geocodeAddress(address, geocoder, resultsMap) {
+function geocodeAddress(address, geocoder, map) {
   geocoder.geocode({'address': address, componentRestrictions: {country: 'DE'}}, function(results, status) {
-
     if (status === google.maps.GeocoderStatus.OK) {
       resultsMap.setCenter(results[0].geometry.location);
       resultsMap.setZoom(8);
-      var marker = new google.maps.Marker({
-        map: resultsMap,
+
+      setMapOnAll(Null);
+      if(currentMarker) currentMarker.setMap(Null);
+      var currentMarker = new google.maps.Marker({
+        map: map,
         position: results[0].geometry.location
       });
 
     } else {
       // alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+function geocodeLatLng(latLng, map, geocoder) {
+  geocoder.geocode({'latLng': latLng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+            var locationData = results[0].formatted_address;
+            locationData = locationData.split(",");
+            var zipcode = locationData[locationData.length - 2].trim().split(" ")[0];
+            var locationInputField = document.getElementById("address");
+            locationInputField.value = zipcode;
+
+            map.setCenter(results[0].geometry.location);
+            map.setZoom(8);
+            // setMapOnAll(Null);
+            if(currentMarker) currentMarker.setMap(Null);
+            currentMarker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+            });
+        } else {
+            alert("location not found");
+        }
+    } else {
+        //document.getElementById("location").innerHTML="Geocoder failed due to: " + status;
+        //alert("Geocoder failed due to: " + status);
     }
   });
 }
