@@ -26,16 +26,12 @@ function zoomToPositionOnChange(map, geocoder) {
 function geocodeAddress(address, geocoder, map) {
   geocoder.geocode({'address': address, componentRestrictions: {country: 'DE'}}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
-      resultsMap.setCenter(results[0].geometry.location);
-      resultsMap.setZoom(8);
+      map.setCenter(results[0].geometry.location);
+      map.setZoom(8);
 
-      setMapOnAll(Null);
-      if(currentMarker) currentMarker.setMap(Null);
-      var currentMarker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location
-      });
-
+      // setMapOnAll(null);
+      // if(currentMarker) currentMarker.setMap(null);
+      setMarker(map, results[0].geometry.location);
     } else {
       // alert('Geocode was not successful for the following reason: ' + status);
     }
@@ -52,14 +48,7 @@ function geocodeLatLng(latLng, map, geocoder) {
             var locationInputField = document.getElementById("address");
             locationInputField.value = zipcode;
 
-            map.setCenter(results[0].geometry.location);
-            map.setZoom(8);
-            // setMapOnAll(Null);
-            if(currentMarker) currentMarker.setMap(Null);
-            currentMarker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location
-            });
+            setMarker(map, results[0].geometry.location);
         } else {
             alert("location not found");
         }
@@ -67,6 +56,17 @@ function geocodeLatLng(latLng, map, geocoder) {
         //document.getElementById("location").innerHTML="Geocoder failed due to: " + status;
         //alert("Geocoder failed due to: " + status);
     }
+  });
+}
+
+function setMarker(map, location) {
+  map.setCenter(location);
+  map.setZoom(8);
+  // setMapOnAll(Null);
+  if(currentMarker) currentMarker.setMap(null);
+  currentMarker = new google.maps.Marker({
+    map: map,
+    position: location
   });
 }
 
