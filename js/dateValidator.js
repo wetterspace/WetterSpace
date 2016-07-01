@@ -1,11 +1,10 @@
-window.onload = function() {
+function addDateValidation() {
   var start_date = document.getElementById("start_date");
   var end_date = document.getElementById("end_date");
   var today = new Date();
 
   start_date.value = makeDateString(calcDate(today, -10));
   end_date.value = makeDateString(today);
-
 
   start_date.setAttribute("max", end_date.value);
 
