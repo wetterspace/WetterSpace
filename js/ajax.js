@@ -2,11 +2,11 @@ var currentResponse;
 
 function addAjaxEvent() {
   document.getElementById("submit").onclick = function() {
-    sendAjaxRequest("Relative Luftfeuchte");
+    sendAjaxRequest("Lufttemperatur Tagesmittel");
     // Test
-    console.log(currentResponse);
+    // console.log(currentResponse);
     // Test end
-    handleResponse(currentResponse);
+    // handleResponse(currentResponse);
   };
 }
 
@@ -27,11 +27,12 @@ function sendAjaxRequest(element) {
   request.open("POST", url, true);
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   request.send(parameters);
+
   request.onreadystatechange = function() {
     if (request.readyState == 4 && request.status == 200) {
       if (request.responseText) {
-        //  console.log(request.responseText);
-         currentResponse = request.responseText;
+         console.log(request.responseText);
+         handleResponse(request.responseText);
       }
     }
   }

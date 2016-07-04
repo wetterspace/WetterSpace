@@ -3,5 +3,5 @@ window.onload = function() {
   addDateValidation();
 
   google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
+  // google.charts.setOnLoadCallback(drawBackgroundColor);
 }
