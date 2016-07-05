@@ -1,26 +1,50 @@
-var currentResponse;
+var currentStartDate;
+var currentEndDate;
+var currentLocation;
 
 function addAjaxEvent() {
   document.getElementById("submit").onclick = function() {
-    var elements = getRequestedElements()
+    var location = document.getElementById("address").value;
+    var start_date = document.getElementById("start_date").value;
+    var end_date = document.getElementById("end_date").value;
+    var elements;
 
-    for (var i = 0; i < elements.length; i++) {
-
-      sendAjaxRequest(elements[i]);
+    if(location != currentLocation) {
+      elements = getRequestedElements();
+      execAjaxForElements(elements, location, start_date, end_date);
+    } else {
+      // same location
+      if(start_date != currentStartDate || end_date != currentEndDate) {
+        elements = getRequestedElements();
+        execAjaxForElements(elements, location, start_date, end_date);
+      } else {
+        // same location and same dates
+        // check checkboxes
+        elements = getNewRequestedElement();
+        execAjaxForElements(elements, location, start_date, end_date);
+      }
     }
-    // sendAjaxRequest("Lufttemperatur Tagesmittel");
-
+    deleteNotUsedCharts();
+    currentLocation = location;
+    currentStartDate = start_date;
+    currentEndDate = end_date;
   };
 }
 
-function sendAjaxRequest(element) {
+function deleteNotUsedCharts(elements) {
+  var chartsDiv = document.getElementById("charts");
+  console.log(chartsDiv);
+}
+
+function execAjaxForElements(elements, location, start_date, end_date) {
+  for (var i = 0; i < elements.length; i++) {
+    sendAjaxRequest(elements[i], location, start_date, end_date);
+  }
+}
+
+function sendAjaxRequest(element, location, start_date, end_date) {
   var request = new XMLHttpRequest();
   var url = "https://www.wetter.space/cgi-bin/jsonGenerator.cgi";
-
-  var location = $("#address").val();
-  var start_date = $("#start_date").val();
-  var end_date = $("#end_date").val();
-  // var element = ;
 
   var parameters = "location=" + location;
   parameters += "&start_date=" + start_date;
@@ -48,4 +72,29 @@ function getRequestedElements() {
     if(checkboxes[i].checked) requestElements.push(checkboxes[i].dataset.element);
   }
   return requestElements;
+}
+
+function getNewRequestedElement() {
+  // only returns the elements for which no chart exists
+  var checkboxes = document.getElementsByClassName("metrics_checkbox");
+  var requestElements = [];
+  for (var i = 0; i < checkboxes.length; i++) {
+    var divID = document.getElementById(checkboxes[i].dataset.element + "_chart");
+    if(checkboxes[i].checked && !divID) {
+      requestElements.push(checkboxes[i].dataset.element);
+    }
+  }
+  return requestElements;
+}
+
+function deleteNotUsedCharts() {
+  var checkboxes = document.getElementsByClassName("metrics_checkbox");
+  var chartsDiv = document.getElementById("charts");
+
+  for (var i = 0; i < checkboxes.length; i++) {
+    var chartDiv = document.getElementById(checkboxes[i].dataset.element + "_chart");
+    if(!checkboxes[i].checked && chartDiv) {
+      chartsDiv.removeChild(chartDiv);
+    }
+  }
 }

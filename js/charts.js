@@ -1,9 +1,11 @@
 function drawChart(responseData) {
   var element  = responseData[0]["element"];
+  element = element.replace(/ae/g,"ä").replace(/oe/g,"ö").replace(/ue/g,"ü");
   var unit = responseData[0]["einheit"];
   var dataArray = getDataArray(responseData);
+  var elementDivId = element + "_chart";
 
-  addDiv(element + "_chart");
+  addDiv(elementDivId);
 
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'X');
@@ -20,7 +22,7 @@ function drawChart(responseData) {
     // }
   };
 
-  var chart = new google.visualization.LineChart(document.getElementById(element + "_chart"));
+  var chart = new google.visualization.LineChart(document.getElementById(elementDivId));
   chart.draw(data, options);
 }
 
@@ -31,7 +33,7 @@ function getDataArray(data) {
     date = convertToDate(date);
 
     var value = data[i]["wert"];
-    value = parseInt(value.replace(",", ".")); // @TODO parseDouble?
+    value = parseFloat(value.replace(",", "."));
 
     result[i] = [];
     result[i][0] = date;
