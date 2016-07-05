@@ -2,11 +2,14 @@ var currentResponse;
 
 function addAjaxEvent() {
   document.getElementById("submit").onclick = function() {
-    sendAjaxRequest("Lufttemperatur Tagesmittel");
-    // Test
-    // console.log(currentResponse);
-    // Test end
-    // handleResponse(currentResponse);
+    var elements = getRequestedElements()
+
+    for (var i = 0; i < elements.length; i++) {
+
+      sendAjaxRequest(elements[i]);
+    }
+    // sendAjaxRequest("Lufttemperatur Tagesmittel");
+
   };
 }
 
@@ -36,4 +39,13 @@ function sendAjaxRequest(element) {
       }
     }
   }
+}
+
+function getRequestedElements() {
+  var checkboxes = document.getElementsByClassName("metrics_checkbox");
+  var requestElements = [];
+  for (var i = 0; i < checkboxes.length; i++) {
+    if(checkboxes[i].checked) requestElements.push(checkboxes[i].dataset.element);
+  }
+  return requestElements;
 }

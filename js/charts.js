@@ -3,6 +3,8 @@ function drawChart(responseData) {
   var unit = responseData[0]["einheit"];
   var dataArray = getDataArray(responseData);
 
+  addDiv(element + "_chart");
+
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'X');
   data.addColumn('number', unit);
@@ -11,15 +13,14 @@ function drawChart(responseData) {
   var options = {
     "title": element,
     "hAxis": {
-      "title": 'Zeit'
+      "title": 'Datum'
     },
-    "vAxis": {
-      "title": unit
-    },
-    "backgroundColor": '#f1f8e9'
+    // "vAxis": {
+    //   "title": unit
+    // }
   };
 
-  var chart = new google.visualization.LineChart(document.getElementById('charts'));
+  var chart = new google.visualization.LineChart(document.getElementById(element + "_chart"));
   chart.draw(data, options);
 }
 
@@ -30,7 +31,7 @@ function getDataArray(data) {
     date = convertToDate(date);
 
     var value = data[i]["wert"];
-    value = parseInt(value.replace(",", "."));
+    value = parseInt(value.replace(",", ".")); // @TODO parseDouble?
 
     result[i] = [];
     result[i][0] = date;
@@ -46,4 +47,11 @@ function convertToDate(dateString) {
   var day = date[2];
 
   return new Date(year, month, day);
+}
+
+function addDiv(element) {
+  var div = document.createElement("div");
+  var chartsDiv = document.getElementById("charts");
+  div.setAttribute("id", element);
+  chartsDiv.appendChild(div);
 }

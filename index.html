@@ -106,9 +106,48 @@
 
    <!-- /.row -->
      <div class="row">
-      <div id="charts">
-
+       <div class="col-md-3 btn-group" data-toggle="buttons">
+        <ul id="weatherMetrics">
+          <li>
+            <label  id="Lufttemperatur_Tagesmaximum" class=" weatherMetric btn btn-xs btn-primary">
+              <input data-element="Lufttemperatur Tagesmaximum" class="metrics_checkbox" type="checkbox" autocomplete="off" >Lufttemperatur Höchstwert
+            </label>
+          </li>
+          <li>
+            <label  id="Lufttemperatur_Tagesminimum" class=" weatherMetric btn btn-xs btn-primary ">
+              <input data-element="Lufttemperatur Tagesminimum" class="metrics_checkbox" type="checkbox" autocomplete="off" > Lufttemperatur Tiefstwert
+            </label>
+          </li>
+          <li>
+            <label  id="Lufttemperatur_Tagesmittel" class=" weatherMetric btn btn-xs btn-primary">
+              <input data-element="Lufttemperatur Tagesmittel" class="metrics_checkbox" type="checkbox" autocomplete="off" checked> Lufttemperatur Mittelwert
+            </label>
+          </li>
+          <li>
+            <label  id="Neuschneehoehe" class=" weatherMetric btn btn-xs btn-primary ">
+              <input data-element="Neuschneehöhe" class="metrics_checkbox" type="checkbox" autocomplete="off" > Neuschneehöhe
+            </label>
+          </li>
+          <li>
+            <label  id="Niederschlagshoehe" class=" weatherMetric btn btn-xs btn-primary ">
+              <input data-element="Niederschlagshöhe" class="metrics_checkbox" type="checkbox" autocomplete="off" > Niederschlagshöhe
+            </label>
+          </li>
+          <li>
+            <label  id="Relative_Luftfeuchte" class=" weatherMetric btn btn-xs btn-primary ">
+              <input data-element="Relative Luftfeuchte" class="metrics_checkbox" type="checkbox" autocomplete="off" > Relative Luftfeuchte
+            </label>
+          </li>
+          <li>
+            <label  id="Schneehoehe" class=" weatherMetric btn btn-xs btn-primary ">
+              <input data-element="Schneehöhe" class="metrics_checkbox" type="checkbox" autocomplete="off" > Gesamtschneehöhe
+            </label>
+          </li>
+        </ul>
       </div>
+     </div>
+     <div class="row" id="charts">
+
      </div>
    </div>
 
