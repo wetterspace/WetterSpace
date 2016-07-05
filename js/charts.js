@@ -55,5 +55,26 @@ function addDiv(element) {
   var div = document.createElement("div");
   var chartsDiv = document.getElementById("charts");
   div.setAttribute("id", element);
+  div.setAttribute("draggable", "true");
+  div.setAttribute("ondragstart", "dragStart(event)");
+  div.setAttribute("ondrop", "dragDrop(event)");
+  // div.setAttribute("class", "col-md-9 chartwetter"); Change this!
+  div.setAttribute("ondragover", "allowDrop(event)")
   chartsDiv.appendChild(div);
+}
+
+function dragStart(e) {
+  e.dataTransfer.effectAllowed='move';
+  e.dataTransfer.setData("Text", e.target.getAttribute('id'));
+}
+
+function dragDrop(e) {
+  var draggedItemId = e.dataTransfer.getData("Text");
+  console.log(draggedItemId);
+  console.log(e.currentTarget.getAttribute("id"));
+  // alert(e.currentTarget.getAttribute("id"));
+}
+
+function allowDrop(e) {
+  e.preventDefault();
 }
