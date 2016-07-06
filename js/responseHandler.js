@@ -45,7 +45,7 @@ function handleResponse(input) {
 
     errorbox.innerHTML = errorHTML;
   } else {
-    drawChart(response);
+    drawDashboard(response);
   }
 }
 

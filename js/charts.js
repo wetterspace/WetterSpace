@@ -1,29 +1,57 @@
-function drawChart(responseData) {
+function drawDashboard(responseData) {
   var element  = responseData[0]["element"];
   element = element.replace(/ae/g,"ä").replace(/oe/g,"ö").replace(/ue/g,"ü");
+
   var unit = responseData[0]["einheit"];
   var dataArray = getDataArray(responseData);
-  var elementDivId = element + "_chart";
 
-  addDiv(elementDivId);
+  var dashboardId = createDashboardAndGetId(element);
+  var elementChartId = element + "_chart";
+  var elementSliderId = element + "_slider";
+
+  addDivForChart(elementChartId, dashboardId);
+  addDivForSlider(elementSliderId, dashboardId);
 
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'X');
   data.addColumn('number', unit);
   data.addRows(dataArray);
 
-  var options = {
-    "title": element,
-    "hAxis": {
-      "title": 'Datum'
-    },
-    // "vAxis": {
-    //   "title": unit
-    // }
-  };
-
-  var chart = new google.visualization.LineChart(document.getElementById(elementDivId));
-  chart.draw(data, options);
+  // var options = {
+  //   "title": element,
+  //   "hAxis": {
+  //     "title": 'Datum'
+  //   },
+  //   // "vAxis": {
+  //   //   "title": unit
+  //   // }
+  // };
+  var dashboard = new google.visualization.Dashboard(document.getElementById(dashboardId));
+  var dateSlider = new google.visualization.ControlWrapper({
+            'controlType': 'ChartRangeFilter',
+            'containerId': elementSliderId,
+            'options': {
+              "filterColumnIndex" : 0
+            }
+          });
+  var lineChart = new google.visualization.ChartWrapper({
+                  'chartType': 'LineChart',
+                  'containerId': elementChartId,
+                  'options': {
+                    "title": element,
+                    "hAxis": {
+                      "title": 'Datum'
+                    },
+                    // 'width': 300,
+                    // 'height': 300,
+                    // 'pieSliceText': 'value',
+                    // 'legend': 'right'
+                  }
+                });
+  dashboard.bind(dateSlider, lineChart);
+  // var chart = new google.visualization.LineChart(document.getElementById(elementChartId));
+  // chart.draw(data, options);
+  dashboard.draw(data);
 }
 
 function getDataArray(data) {
@@ -51,16 +79,33 @@ function convertToDate(dateString) {
   return new Date(year, month, day);
 }
 
-function addDiv(element) {
-  var div = document.createElement("div");
+function createDashboardAndGetId(element) {
+  var dashboardId = element + "_dashboard"
+
+  var dashboardDiv = document.createElement("div");
   var chartsDiv = document.getElementById("charts");
+  dashboardDiv.setAttribute("id", dashboardId);
+  chartsDiv.appendChild(dashboardDiv);
+
+  return dashboardId;
+}
+
+function addDivForChart(element, dashboardId) {
+  var div = document.createElement("div");
+  var dashboardDiv = document.getElementById(dashboardId);
   div.setAttribute("id", element);
-  div.setAttribute("draggable", "true");
-  div.setAttribute("ondragstart", "dragStart(event)");
-  div.setAttribute("ondrop", "dragDrop(event)");
-  // div.setAttribute("class", "col-md-9 chartwetter"); Change this!
-  div.setAttribute("ondragover", "allowDrop(event)")
-  chartsDiv.appendChild(div);
+  // div.setAttribute("draggable", "true");
+  // div.setAttribute("ondragstart", "dragStart(event)");
+  // div.setAttribute("ondrop", "dragDrop(event)");
+  // div.setAttribute("ondragover", "allowDrop(event)");
+  dashboardDiv.appendChild(div);
+}
+
+function addDivForSlider(element, dashboardId) {
+  var div = document.createElement("div");
+  var dashboardDiv = document.getElementById(dashboardId);
+  div.setAttribute("id", element);
+  dashboardDiv.appendChild(div);
 }
 
 function dragStart(e) {
