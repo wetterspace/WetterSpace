@@ -4,4 +4,5 @@ window.onload = function() {
 
   google.charts.load('current', {'packages':['corechart', "controls"]});
   // google.charts.setOnLoadCallback(drawBackgroundColor);
+   $("#weatherMetrics").sticky({topSpacing:40});
 }

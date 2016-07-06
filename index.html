@@ -38,10 +38,12 @@
           <script type="text/javascript" src="https://www.google.com/jsapi"></script>
           <!-- jQuery Version 1.11.1 -->
           <script src="bower_components/jquery/dist/jquery.min.js"></script>
+          <script src="bower_components/jquery-sticky/jquery.sticky.js"></script>
           <script src="js/dateValidator.js"></script>
           <script src="js/responseHandler.js"></script>
           <script src="js/ajax.js"></script>
           <script src="js/initializor.js"></script>
+
         </head>
 
         <body>
@@ -69,23 +71,10 @@
                     <input id="end_date" type="date" class="form-control" placeholder="End Date" value="">
                     <input id="submit" type="button" value="Search" class="btn btn-default">
 
-            <!--  <input id="address" type="textbox" value="Sydney, NSW">
-            <input id="submit" type="button" value="Geocode">  -->
+            
                   </div>
                </form>
-        <!-- <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="charts_test.html">Charts</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <comment>
-            </ul>
-          </li>
-        </ul> -->
+       
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
@@ -105,7 +94,11 @@
 
    <!-- /.row -->
      <div class="row">
-       <div class="col-md-3 btn-group" data-toggle="buttons">
+
+     <div class="col-md-9 chartwetter" id="charts">
+
+     </div>
+       <div class="col-md-3 btn-group rightSideButtons" data-toggle="buttons">
         <ul id="weatherMetrics">
           <li>
             <label  id="Lufttemperatur_Tagesmaximum" class=" weatherMetric btn btn-xs btn-primary">
@@ -145,9 +138,7 @@
         </ul>
       </div>
      </div>
-     <div class="row" id="charts">
-
-     </div>
+     
    </div>
 
   <!-- Footer -->
