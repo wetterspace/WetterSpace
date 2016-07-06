@@ -79,7 +79,7 @@ function getNewRequestedElement() {
   var checkboxes = document.getElementsByClassName("metrics_checkbox");
   var requestElements = [];
   for (var i = 0; i < checkboxes.length; i++) {
-    var divID = document.getElementById(checkboxes[i].dataset.element + "_chart");
+    var divID = document.getElementById(checkboxes[i].dataset.element + "_dashboard");
     if(checkboxes[i].checked && !divID) {
       requestElements.push(checkboxes[i].dataset.element);
     }
@@ -92,9 +92,9 @@ function deleteNotUsedCharts() {
   var chartsDiv = document.getElementById("charts");
 
   for (var i = 0; i < checkboxes.length; i++) {
-    var chartDiv = document.getElementById(checkboxes[i].dataset.element + "_chart");
-    if(!checkboxes[i].checked && chartDiv) {
-      chartsDiv.removeChild(chartDiv);
+    var dashboardDiv = document.getElementById(checkboxes[i].dataset.element + "_dashboard");
+    if(!checkboxes[i].checked && dashboardDiv) {
+      chartsDiv.removeChild(dashboardDiv);
     }
   }
 }

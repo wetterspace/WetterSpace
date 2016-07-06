@@ -17,21 +17,13 @@ function drawDashboard(responseData) {
   data.addColumn('number', unit);
   data.addRows(dataArray);
 
-  // var options = {
-  //   "title": element,
-  //   "hAxis": {
-  //     "title": 'Datum'
-  //   },
-  //   // "vAxis": {
-  //   //   "title": unit
-  //   // }
-  // };
   var dashboard = new google.visualization.Dashboard(document.getElementById(dashboardId));
   var dateSlider = new google.visualization.ControlWrapper({
             'controlType': 'ChartRangeFilter',
             'containerId': elementSliderId,
             'options': {
-              "filterColumnIndex" : 0
+              "filterColumnIndex" : 0,
+
             }
           });
   var lineChart = new google.visualization.ChartWrapper({
@@ -42,15 +34,9 @@ function drawDashboard(responseData) {
                     "hAxis": {
                       "title": 'Datum'
                     },
-                    // 'width': 300,
-                    // 'height': 300,
-                    // 'pieSliceText': 'value',
-                    // 'legend': 'right'
                   }
                 });
   dashboard.bind(dateSlider, lineChart);
-  // var chart = new google.visualization.LineChart(document.getElementById(elementChartId));
-  // chart.draw(data, options);
   dashboard.draw(data);
 }
 
