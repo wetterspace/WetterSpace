@@ -64,14 +64,12 @@
 
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" role="search" onkeypress="return event.keyCode != 13;">
                   <div class="form-group" id="floating-panel">
                     <input id="address" type="textbox" class="form-control" placeholder="ZIP code" value="">
                     <input id="start_date" type="date" class="form-control" placeholder="Start Date" value="">
                     <input id="end_date" type="date" class="form-control" placeholder="End Date" value="">
                     <input id="submit" type="button" value="Search" class="btn btn-default">
-
-
                   </div>
                </form>
 
@@ -138,9 +136,7 @@
         </ul>
       </div>
      </div>
-
    </div>
-
   <!-- Footer -->
   <div class="footer container-fluid">
     <div class="row">

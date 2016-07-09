@@ -124,7 +124,6 @@ function createOverlayChart(originChartId, targetChartId) {
   var allResponseData = originData.concat(targetData);
   var targetBasicId = targetChartId.replace(/_chart/g, "").replace(/_overlay/g, "");
   var newBasicId = (originChartId + " " + targetChartId).replace(/_chart/g, "").replace(/_overlay/g, "");
-
   var dataArray = getOverlayDataArray(allResponseData);
 
   var targetChartElement = document.getElementById(targetChartId);
@@ -140,11 +139,16 @@ function createOverlayChart(originChartId, targetChartId) {
   targetSliderElement.setAttribute("id", newBasicId + "_slider_overlay");
   targetChartElement.setAttribute("id", newBasicId + "_chart_overlay")
 
-
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'X');
+  var counter = 0;
+  var unitElements = [];
   for (var i = 0; i < allResponseData.length; i++) {
-    data.addColumn("number", allResponseData[i][0]["element"] + " in " + allResponseData[i][0]["einheit"])
+    if((unitElements.indexOf(allResponseData[i][0]["element"]) == -1)) {
+      unitElements.push(allResponseData[i][0]["element"]);
+      data.addColumn("number", allResponseData[i][0]["element"] + " in " + allResponseData[i][0]["einheit"]);
+      counter++;
+    }
   }
   data.addRows(dataArray);
 
@@ -181,22 +185,29 @@ function createOverlayChart(originChartId, targetChartId) {
 
 function getOverlayDataArray(data) {
   var result = [];
+  var elements = [];
+  var counter = 0;
   for (var i = 0; i < data.length; i++) {
     var currentDataset = data[i];
-    for(x = 0; x < data[i].length; x++) {
-      var date = currentDataset[x]["date"];
-      date = convertToDate(date);
+    if(elements.indexOf(currentDataset[0]["element"]) == -1) {
+      elements.push(currentDataset[0]["element"]);
+      for(x = 0; x < data[i].length; x++) {
 
-      var value = currentDataset[x]["wert"];
-      value = parseFloat(value.replace(",", "."));
+        var date = currentDataset[x]["date"];
+        date = convertToDate(date);
 
-      if(i == 0) {
-        result[x] = [];
-        result[x][0] = date;
-        result[x][1] = value;
-      } else {
-        result[x][i + 1] = value;
+        var value = currentDataset[x]["wert"];
+        value = parseFloat(value.replace(",", "."));
+
+        if(counter == 0) {
+          result[x] = [];
+          result[x][0] = date;
+          result[x][1] = value;
+        } else {
+          result[x][counter + 1] = value;
+        }
       }
+      counter++;
     }
   }
 
