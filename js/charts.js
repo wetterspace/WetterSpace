@@ -39,6 +39,9 @@ function drawDashboard(responseData) {
                   'chartType': 'LineChart',
                   'containerId': elementChartId,
                   'options': {
+                    "titleTextStyle": {
+                      "fontSize": 18,
+                    },
                     "title": element,
                     "hAxis": {
                       "title": 'Datum'
@@ -143,8 +146,10 @@ function createOverlayChart(originChartId, targetChartId) {
   data.addColumn('date', 'X');
   var counter = 0;
   var unitElements = [];
+  var title = "";
   for (var i = 0; i < allResponseData.length; i++) {
     if((unitElements.indexOf(allResponseData[i][0]["element"]) == -1)) {
+      title += allResponseData[i][0]["element"] + " / ";
       unitElements.push(allResponseData[i][0]["element"]);
       data.addColumn("number", allResponseData[i][0]["element"] + " in " + allResponseData[i][0]["einheit"]);
       counter++;
@@ -169,7 +174,10 @@ function createOverlayChart(originChartId, targetChartId) {
                   'chartType': 'LineChart',
                   'containerId': newBasicId + "_chart_overlay",
                   'options': {
-                    "title": "overlay",
+                    "titleTextStyle": {
+                      "fontSize": 18,
+                    },
+                    "title": title + "OVERLAY",
                     "hAxis": {
                       "title": 'Datum'
                     },
