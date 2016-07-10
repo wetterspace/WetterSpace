@@ -4,31 +4,35 @@ var currentLocation;
 
 function addAjaxEvent() {
   document.getElementById("submit").onclick = function() {
-    var location = document.getElementById("address").value;
-    var start_date = document.getElementById("start_date").value;
-    var end_date = document.getElementById("end_date").value;
-    var elements;
+    makeAjaxRequest();
+  };
+}
 
-    if(location != currentLocation) {
+function makeAjaxRequest() {
+  var location = document.getElementById("address").value;
+  var start_date = document.getElementById("start_date").value;
+  var end_date = document.getElementById("end_date").value;
+  var elements;
+
+  if(location != currentLocation) {
+    elements = getRequestedElements();
+    execAjaxForElements(elements, location, start_date, end_date);
+  } else {
+    // same location
+    if(start_date != currentStartDate || end_date != currentEndDate) {
       elements = getRequestedElements();
       execAjaxForElements(elements, location, start_date, end_date);
     } else {
-      // same location
-      if(start_date != currentStartDate || end_date != currentEndDate) {
-        elements = getRequestedElements();
-        execAjaxForElements(elements, location, start_date, end_date);
-      } else {
-        // same location and same dates
-        // check checkboxes
-        elements = getNewRequestedElement();
-        execAjaxForElements(elements, location, start_date, end_date);
-      }
+      // same location and same dates
+      // check checkboxes
+      elements = getNewRequestedElement();
+      execAjaxForElements(elements, location, start_date, end_date);
     }
-    deleteNotUsedCharts();
-    currentLocation = location;
-    currentStartDate = start_date;
-    currentEndDate = end_date;
-  };
+  }
+  deleteNotUsedCharts();
+  currentLocation = location;
+  currentStartDate = start_date;
+  currentEndDate = end_date;
 }
 
 function deleteNotUsedCharts(elements) {

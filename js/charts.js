@@ -16,7 +16,7 @@ function drawDashboard(responseData) {
 
   addDivForChart(elementChartId, dashboardId);
   addDivForSlider(elementSliderId, dashboardId);
-
+  addDeleteChartButton(dashboardId);
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'X');
   data.addColumn('number', unit);
@@ -135,7 +135,6 @@ function createOverlayChart(originChartId, targetChartId) {
     targetSliderElement = document.getElementById(targetBasicId + "_slider_overlay");
   }
   var targetDashboardElement = targetChartElement.parentNode;
-
   uncheckButtons(targetBasicId);
 
   targetDashboardElement.setAttribute("id", newBasicId + "_dashboard_overlay");
@@ -177,7 +176,7 @@ function createOverlayChart(originChartId, targetChartId) {
                     "titleTextStyle": {
                       "fontSize": 18,
                     },
-                    "title": title + "OVERLAY",
+                    "title": title.substring(0, title.length - 2),
                     "hAxis": {
                       "title": 'Datum'
                     },
@@ -225,4 +224,20 @@ function getOverlayDataArray(data) {
 function uncheckButtons(id) {
   var element = document.getElementById(id + "_button");
   if(element != null) element.checked = false;
+}
+
+function addDeleteChartButton(dashboardId) {
+  var button = document.createElement("button");
+  var text = document.createTextNode("Lösche Diagramm");
+  button.setAttribute("type", "button");
+  button.setAttribute("class", "btn btn-s btn-primary");
+  button.appendChild(text);
+
+  var dashboardDiv = document.getElementById(dashboardId);
+  dashboardDiv.appendChild(button);
+
+  button.onclick = function() {
+    var dashboardParent = dashboardDiv.parentNode;
+    dashboardParent.removeChild(dashboardDiv);
+  }
 }

@@ -71,3 +71,13 @@ function checkDates(start_date, end_date) {
     end_date.value = makeDateString(start_date);
   }
 }
+
+function addEnterEvent() {
+  var form = document.getElementById("floating-panel");
+  form.onkeypress = function(event) {
+    if (event.keyCode == 13) {
+        makeAjaxRequest();
+        return false;
+    }
+  }
+}
