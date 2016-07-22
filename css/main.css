@@ -6753,6 +6753,13 @@ body {
 	color: @main_txt_color;
 }
 */
+#errorbox {
+  color: #fff;
+  background-color: #ff1a1a;
+  font-family: sans-serif;
+  font-size: 150%;
+  margin-top: -40px;
+}
 .footer {
   background-color: #006E9F;
   min-height: 85px;
