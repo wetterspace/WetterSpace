@@ -18,15 +18,19 @@ function drawDashboard(responseData) {
   addDivForSlider(elementSliderId, dashboardId);
   addDeleteChartButton(dashboardId);
 
+  drawGoogleDashboard(dataArray, unit, dashboardId, elementSliderId, elementChartId, element);
+}
+
+function drawGoogleDashboard(chartData, unit, dashboardId, sliderId, chartId, element) {
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'X');
   data.addColumn('number', unit);
-  data.addRows(dataArray);
+  data.addRows(chartData);
 
   var dashboard = new google.visualization.Dashboard(document.getElementById(dashboardId));
   var dateSlider = new google.visualization.ControlWrapper({
             'controlType': 'ChartRangeFilter',
-            'containerId': elementSliderId,
+            'containerId': sliderId,
             'options': {
               "filterColumnIndex" : 0,
               "ui" : {
@@ -38,7 +42,7 @@ function drawDashboard(responseData) {
           });
   var lineChart = new google.visualization.ChartWrapper({
                   'chartType': 'LineChart',
-                  'containerId': elementChartId,
+                  'containerId': chartId,
                   'options': {
                     "titleTextStyle": {
                       "fontSize": 18,
@@ -52,6 +56,7 @@ function drawDashboard(responseData) {
   dashboard.bind(dateSlider, lineChart);
   dashboard.draw(data);
 }
+
 
 function getDataArray(data) {
   var result = [];
@@ -81,30 +86,36 @@ function convertToDate(dateString) {
 function createDashboardAndGetId(element) {
   var dashboardId = element + "_dashboard"
 
-  var dashboardDiv = document.createElement("div");
-  var chartsDiv = document.getElementById("charts");
-  dashboardDiv.setAttribute("id", dashboardId);
-  chartsDiv.appendChild(dashboardDiv);
+  if(!document.getElementById(dashboardId)) {
+    var dashboardDiv = document.createElement("div");
+    var chartsDiv = document.getElementById("charts");
+    dashboardDiv.setAttribute("id", dashboardId);
+    chartsDiv.appendChild(dashboardDiv);
+  }
 
   return dashboardId;
 }
 
 function addDivForChart(element, dashboardId) {
-  var div = document.createElement("div");
-  var dashboardDiv = document.getElementById(dashboardId);
-  div.setAttribute("id", element);
-  div.setAttribute("draggable", "true");
-  div.setAttribute("ondragstart", "dragStart(event)");
-  div.setAttribute("ondrop", "dragDrop(event)");
-  div.setAttribute("ondragover", "allowDrop(event)");
-  dashboardDiv.appendChild(div);
+  if(!document.getElementById(element)) {
+    var div = document.createElement("div");
+    var dashboardDiv = document.getElementById(dashboardId);
+    div.setAttribute("id", element);
+    div.setAttribute("draggable", "true");
+    div.setAttribute("ondragstart", "dragStart(event)");
+    div.setAttribute("ondrop", "dragDrop(event)");
+    div.setAttribute("ondragover", "allowDrop(event)");
+    dashboardDiv.appendChild(div);
+  }
 }
 
 function addDivForSlider(element, dashboardId) {
-  var div = document.createElement("div");
-  var dashboardDiv = document.getElementById(dashboardId);
-  div.setAttribute("id", element);
-  dashboardDiv.appendChild(div);
+  if(!document.getElementById(element)) {
+    var div = document.createElement("div");
+    var dashboardDiv = document.getElementById(dashboardId);
+    div.setAttribute("id", element);
+    dashboardDiv.appendChild(div);
+  }
 }
 
 function dragStart(e) {
@@ -237,6 +248,7 @@ function addDeleteChartButton(dashboardId) {
       buttonExists = true;
     }
   }
+
   if(!buttonExists) {
     var button = document.createElement("button");
     var text = document.createTextNode("Lösche Diagramm");
@@ -249,6 +261,19 @@ function addDeleteChartButton(dashboardId) {
     button.onclick = function() {
       var dashboardParent = dashboardDiv.parentNode;
       dashboardParent.removeChild(dashboardDiv);
+    }
+  }
+}
+
+function redrawOnResize() {
+  console.log("redraw")
+  var dashboards = document.getElementById("charts").childNodes
+  if(dashboards.length > 0) {
+    console.log(dashboards);
+    for (var i = 0; i < dashboards.length; i++) {
+      if(dashboards[i].nodeName == "DIV") {
+        drawDashboard(chartsDataTables[dashboards[i].id.replace(/_dashboard/g,"_chart")][0])
+      }
     }
   }
 }
