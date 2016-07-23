@@ -17,6 +17,7 @@ function drawDashboard(responseData) {
   addDivForChart(elementChartId, dashboardId);
   addDivForSlider(elementSliderId, dashboardId);
   addDeleteChartButton(dashboardId);
+
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'X');
   data.addColumn('number', unit);
@@ -227,17 +228,27 @@ function uncheckButtons(id) {
 }
 
 function addDeleteChartButton(dashboardId) {
-  var button = document.createElement("button");
-  var text = document.createTextNode("Lösche Diagramm");
-  button.setAttribute("type", "button");
-  button.setAttribute("class", "btn btn-s btn-primary");
-  button.appendChild(text);
-
   var dashboardDiv = document.getElementById(dashboardId);
-  dashboardDiv.appendChild(button);
+  var buttonExists = false
 
-  button.onclick = function() {
-    var dashboardParent = dashboardDiv.parentNode;
-    dashboardParent.removeChild(dashboardDiv);
+  for (var i = 0; i < dashboardDiv.childNodes.length; i++) {
+    // console.log(dashboardDiv.childNodes[i])
+    if (dashboardDiv.childNodes[i].type == "button") {
+      buttonExists = true;
+    }
+  }
+  if(!buttonExists) {
+    var button = document.createElement("button");
+    var text = document.createTextNode("Lösche Diagramm");
+    button.setAttribute("type", "button");
+    button.setAttribute("class", "btn btn-s btn-primary deleteButton");
+    button.appendChild(text);
+
+    dashboardDiv.appendChild(button);
+
+    button.onclick = function() {
+      var dashboardParent = dashboardDiv.parentNode;
+      dashboardParent.removeChild(dashboardDiv);
+    }
   }
 }
