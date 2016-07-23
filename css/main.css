@@ -6748,11 +6748,6 @@ body {
 .navbar-default .navbar-nav > li > a:hover {
   color: #f7f7f7;
 }
-/*
-.navbar a.dropdown-toggle, .navbar-default .navbar-nav > li > a {
-	color: @main_txt_color;
-}
-*/
 #errorbox {
   color: #fff;
   background-color: #ff1a1a;
@@ -6760,13 +6755,18 @@ body {
   font-size: 150%;
   margin-top: -40px;
 }
+.deleteButton {
+  margin: 10px 0px 20px 0px;
+  position: realtive;
+  float: right;
+}
 .footer {
   background-color: #006E9F;
   min-height: 85px;
   color: #fff;
 }
 .dashboardDivArea {
-  padding: 0px 0px 50px 0px;
+  padding: 40px 0px 10px 0px;
   margin: 0px;
   color: #888;
   background-color: #fff;
@@ -6774,28 +6774,6 @@ body {
 #map {
   height: 350px;
   width: 100%;
-}
-.chartTitle {
-  font-size: 30px;
-  font-weight: 100;
-  padding: 60px 0 0 100px;
-  color: #9c9c9c;
-}
-.years {
-  margin: 20px 0px;
-  padding: 10px 10px 10px 100px;
-  text-align: right;
-  height: 40px;
-}
-.lineDivArea {
-  height: 400px;
-}
-.controlDivArea {
-  height: 70px;
-  width: 100%;
-  position: relative;
-  background-color: none;
-  opacity: 0.8;
 }
 div.col-md-2 .metrics-buttons {
   background-color: #fff!important;

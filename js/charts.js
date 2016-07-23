@@ -89,6 +89,7 @@ function createDashboardAndGetId(element) {
   if(!document.getElementById(dashboardId)) {
     var dashboardDiv = document.createElement("div");
     var chartsDiv = document.getElementById("charts");
+    dashboardDiv.setAttribute("class","dashboardDivArea");
     dashboardDiv.setAttribute("id", dashboardId);
     chartsDiv.appendChild(dashboardDiv);
   }
@@ -253,7 +254,7 @@ function addDeleteChartButton(dashboardId) {
     var button = document.createElement("button");
     var text = document.createTextNode("Lösche Diagramm");
     button.setAttribute("type", "button");
-    button.setAttribute("class", "btn btn-s btn-primary deleteButton");
+    button.setAttribute("class", "btn btn-xs btn-primary deleteButton");
     button.appendChild(text);
 
     dashboardDiv.appendChild(button);
