@@ -5,7 +5,7 @@ function drawDashboard(responseData) {
   element = element.replace(/ae/g,"ä").replace(/oe/g,"ö").replace(/ue/g,"ü");
 
   var unit = responseData[0]["einheit"];
-  var dataArray = getDataArray(responseData);
+  var dataArray = getDataArray([responseData]);;
 
   var dashboardId = createDashboardAndGetId(element);
   var elementChartId = element + "_chart";
@@ -18,13 +18,15 @@ function drawDashboard(responseData) {
   addDivForSlider(elementSliderId, dashboardId);
   addDeleteChartButton(dashboardId);
 
-  drawGoogleDashboard(dataArray, unit, dashboardId, elementSliderId, elementChartId, element);
+  drawGoogleDashboard(dataArray, [unit], dashboardId, elementSliderId, elementChartId, element);
 }
 
-function drawGoogleDashboard(chartData, unit, dashboardId, sliderId, chartId, element) {
+function drawGoogleDashboard(chartData, units, dashboardId, sliderId, chartId, title) {
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'X');
-  data.addColumn('number', unit);
+  for (var i = 0; i < units.length; i++) {
+    data.addColumn("number", units[i]);
+  }
   data.addRows(chartData);
 
   var dashboard = new google.visualization.Dashboard(document.getElementById(dashboardId));
@@ -47,7 +49,7 @@ function drawGoogleDashboard(chartData, unit, dashboardId, sliderId, chartId, el
                     "titleTextStyle": {
                       "fontSize": 18,
                     },
-                    "title": element,
+                    "title": title,
                     "hAxis": {
                       "title": 'Datum'
                     },
@@ -140,7 +142,7 @@ function createOverlayChart(originChartId, targetChartId) {
   var allResponseData = originData.concat(targetData);
   var targetBasicId = targetChartId.replace(/_chart/g, "").replace(/_overlay/g, "");
   var newBasicId = (originChartId + " " + targetChartId).replace(/_chart/g, "").replace(/_overlay/g, "");
-  var dataArray = getOverlayDataArray(allResponseData);
+  var dataArray = getDataArray(allResponseData);
 
   var targetChartElement = document.getElementById(targetChartId);
   var targetSliderElement = document.getElementById(targetBasicId + "_slider");
@@ -154,56 +156,27 @@ function createOverlayChart(originChartId, targetChartId) {
   targetSliderElement.setAttribute("id", newBasicId + "_slider_overlay");
   targetChartElement.setAttribute("id", newBasicId + "_chart_overlay")
 
-  var data = new google.visualization.DataTable();
-  data.addColumn('date', 'X');
-  var counter = 0;
+  // var data = new google.visualization.DataTable();
+  // data.addColumn('date', 'X');
   var unitElements = [];
+  var units = []
   var title = "";
   for (var i = 0; i < allResponseData.length; i++) {
     if((unitElements.indexOf(allResponseData[i][0]["element"]) == -1)) {
       title += allResponseData[i][0]["element"] + " / ";
       unitElements.push(allResponseData[i][0]["element"]);
-      data.addColumn("number", allResponseData[i][0]["element"] + " in " + allResponseData[i][0]["einheit"]);
-      counter++;
+      units.push(allResponseData[i][0]["element"] + " in " + allResponseData[i][0]["einheit"]);
     }
   }
-  data.addRows(dataArray);
 
-  var dashboard = new google.visualization.Dashboard(targetDashboardElement);
-  var dateSlider = new google.visualization.ControlWrapper({
-            'controlType': 'ChartRangeFilter',
-            'containerId': newBasicId + "_slider_overlay",
-            'options': {
-              "filterColumnIndex" : 0,
-              "ui" : {
-                "chartOptions" : {
-                  "height" : 50
-                }
-              }
-            }
-          });
-  var lineChart = new google.visualization.ChartWrapper({
-                  'chartType': 'LineChart',
-                  'containerId': newBasicId + "_chart_overlay",
-                  'options': {
-                    "titleTextStyle": {
-                      "fontSize": 18,
-                    },
-                    "title": title.substring(0, title.length - 2),
-                    "hAxis": {
-                      "title": 'Datum'
-                    },
-                  }
-                });
-  dashboard.bind(dateSlider, lineChart);
-  dashboard.draw(data);
+  drawGoogleDashboard(dataArray, units, targetDashboardElement, newBasicId + "_slider_overlay", newBasicId + "_chart_overlay", title.substring(0, title.length - 2))
 
   //Creates new...or overwrite?
   chartsDataTables[newBasicId + "_chart_overlay"] = [];
   chartsDataTables[newBasicId + "_chart_overlay"] = allResponseData;
 }
 
-function getOverlayDataArray(data) {
+function getDataArray(data) {
   var result = [];
   var elements = [];
   var counter = 0;
@@ -267,14 +240,41 @@ function addDeleteChartButton(dashboardId) {
 }
 
 function redrawOnResize() {
-  console.log("redraw")
   var dashboards = document.getElementById("charts").childNodes
   if(dashboards.length > 0) {
-    console.log(dashboards);
     for (var i = 0; i < dashboards.length; i++) {
       if(dashboards[i].nodeName == "DIV") {
-        drawDashboard(chartsDataTables[dashboards[i].id.replace(/_dashboard/g,"_chart")][0])
+        var id = dashboards[i].id.replace(/_dashboard/g,"_chart");
+        redrawDashboard(chartsDataTables[dashboards[i].id.replace(/_dashboard/g,"_chart")], dashboards[i])
       }
     }
   }
+}
+
+function redrawDashboard(data, dashboardElement) {
+  var dashboardId = dashboardElement.id;
+
+  dashboardChilds = dashboardElement.childNodes;
+  var sliderId = "";
+  var chartId = "";
+
+  for (var i = 0; i < dashboardChilds.length; i++) {
+    if(dashboardChilds[i].id.indexOf("slider") != -1) sliderId = dashboardChilds[i].id;
+    else if (dashboardChilds[i].id.indexOf("chart") != -1) chartId = dashboardChilds[i].id;
+  }
+
+  var dataArray = getDataArray(data);
+
+  var unitElements = [];
+  var units = []
+  var title = "";
+  for (var i = 0; i < data.length; i++) {
+    if((unitElements.indexOf(data[i][0]["element"]) == -1)) {
+      title += data[i][0]["element"] + " / ";
+      unitElements.push(data[i][0]["element"]);
+      units.push(data[i][0]["element"] + " in " + data[i][0]["einheit"]);
+    }
+  }
+
+  drawGoogleDashboard(dataArray, units, dashboardElement, sliderId, chartId, title.substring(0, title.length - 2))
 }
