@@ -29,31 +29,51 @@ function makeAjaxRequest() {
       execAjaxForElements(elements, location, start_date, end_date);
     }
   }
-  deleteNotUsedCharts();
+
   currentLocation = location;
   currentStartDate = start_date;
   currentEndDate = end_date;
 }
 
-function deleteNotUsedCharts(elements) {
-  var chartsDiv = document.getElementById("charts");
-  console.log(chartsDiv);
-}
-
 function execAjaxForElements(elements, location, start_date, end_date) {
-  for (var i = 0; i < elements.length; i++) {
-    sendAjaxRequest(elements[i], location, start_date, end_date);
-  }
+  if(isNaN(location)) {
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({ 'address': location, componentRestrictions: {country: 'DE'}}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var lat = results[0].geometry.location.lat();
+        var lng = results[0].geometry.location.lng();
+        console.log(lat + " " + lng);
+        var latlng = {"lat": lat, "lng": lng};
+        for (var i = 0; i < elements.length; i++) {
+          sendAjaxRequest(elements[i], latlng, start_date, end_date);
+        }
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  } else {
+    for (var i = 0; i < elements.length; i++) {
+      sendAjaxRequest(elements[i], location, start_date, end_date);
+    }
+  };
 }
 
 function sendAjaxRequest(element, location, start_date, end_date) {
   var request = new XMLHttpRequest();
   var url = "https://www.wetter.space/cgi-bin/jsonGenerator.cgi";
 
-  var parameters = "location=" + location;
+  var parameters = "";
+  if(typeof location === "object") {
+    console.log("is array")
+    parameters += "lat=" + location.lat;
+    parameters += "&long=" + location.lng;
+  } else {
+    parameters += "location=" + location;
+  }
   parameters += "&start_date=" + start_date;
   parameters += "&end_date=" + end_date;
-  if(element) parameters += "&element=" + element;
+  parameters += "&element=" + element;
 
   request.open("POST", url, true);
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
