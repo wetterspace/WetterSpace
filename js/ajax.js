@@ -43,10 +43,13 @@ function execAjaxForElements(elements, location, start_date, end_date) {
       if (status == google.maps.GeocoderStatus.OK) {
         var lat = results[0].geometry.location.lat();
         var lng = results[0].geometry.location.lng();
-        console.log(lat + " " + lng);
+        console.log(results[0]);
         var latlng = {"lat": lat, "lng": lng};
         for (var i = 0; i < elements.length; i++) {
-          sendAjaxRequest(elements[i], latlng, start_date, end_date);
+          if(results[0].partial_match == null) {
+            sendAjaxRequest(elements[i], latlng, start_date, end_date);
+          }
+          else sendAjaxRequest(elements[i], location, start_date, end_date);
         }
       } else {
         alert("Geocode was not successful for the following reason: " + status);
@@ -65,7 +68,6 @@ function sendAjaxRequest(element, location, start_date, end_date) {
 
   var parameters = "";
   if(typeof location === "object") {
-    console.log("is array")
     parameters += "lat=" + location.lat;
     parameters += "&long=" + location.lng;
   } else {
@@ -82,7 +84,7 @@ function sendAjaxRequest(element, location, start_date, end_date) {
   request.onreadystatechange = function() {
     if (request.readyState == 4 && request.status == 200) {
       if (request.responseText) {
-         console.log(request.responseText);
+        //  console.log(request.responseText);
          handleResponse(request.responseText);
       }
     }

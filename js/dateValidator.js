@@ -3,7 +3,7 @@ function addDateValidation() {
   var end_date = document.getElementById("end_date");
   var today = new Date();
 
-  start_date.value = makeDateString(calcDate(today, -28));
+  start_date.value = makeDateString(calcDate(today, -365));
   end_date.value = makeDateString(today);
 
   start_date.setAttribute("max", end_date.value);

@@ -26,14 +26,13 @@ function zoomToPositionOnChange(map, geocoder) {
 function geocodeAddress(address, geocoder, map) {
   geocoder.geocode({'address': address, componentRestrictions: {country: 'DE'}}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      map.setZoom(8);
-
-      // setMapOnAll(null);
-      // if(currentMarker) currentMarker.setMap(null);
-      setMarker(map, results[0].geometry.location);
+      if (results[0].partial_match == null) {
+        map.setCenter(results[0].geometry.location);
+        map.setZoom(8);
+        setMarker(map, results[0].geometry.location);
+      }
     } else {
-      // alert('Geocode was not successful for the following reason: ' + status);
+      alert('Geocode was not successful for the following reason: ' + status);
     }
   });
 }
@@ -69,15 +68,3 @@ function setMarker(map, location) {
     position: location
   });
 }
-
-
-  // document.getElementById('address').addEventListener("keypress",function(e){
-  //   if(e.keyCode == 13){
-
-  //    //geocodeAddress(geocoder, map);
-  //    //var address = document.getElementById('address').value;
-
-  //    window.alert(address);  }
-  //   document.forms[0].submit();
-  //   //document.getElementById("submit").click();
-  //  });
