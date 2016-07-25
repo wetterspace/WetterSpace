@@ -1,6 +1,7 @@
 var currentStartDate;
 var currentEndDate;
 var currentLocation;
+var numberOfAjaxRequests = 0;
 
 function addAjaxEvent() {
   document.getElementById("submit").onclick = function() {
@@ -41,25 +42,37 @@ function execAjaxForElements(elements, location, start_date, end_date) {
 
     geocoder.geocode({ 'address': location, componentRestrictions: {country: 'DE'}}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        var lat = results[0].geometry.location.lat();
-        var lng = results[0].geometry.location.lng();
-        console.log(results[0]);
-        var latlng = {"lat": lat, "lng": lng};
-        for (var i = 0; i < elements.length; i++) {
-          if(results[0].partial_match == null) {
+        if(results[0].partial_match == null) {
+          var lat = results[0].geometry.location.lat();
+          var lng = results[0].geometry.location.lng();
+          console.log(results[0]);
+          var latlng = {"lat": lat, "lng": lng};
+          unhideLoader();
+          for (var i = 0; i < elements.length; i++) {
+            numberOfAjaxRequests++;
             sendAjaxRequest(elements[i], latlng, start_date, end_date);
           }
-          else sendAjaxRequest(elements[i], location, start_date, end_date);
+        } else {
+          // to get the error @TODO change this
+          sendAjaxRequest(elements[i], location, start_date, end_date);
         }
       } else {
+        unhideLoader();
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
   } else {
+    unhideLoader();
     for (var i = 0; i < elements.length; i++) {
+      numberOfAjaxRequests++;
       sendAjaxRequest(elements[i], location, start_date, end_date);
     }
   };
+}
+
+function unhideLoader() {
+  var loader = document.getElementById("loader");
+  loader.style.display = "block";
 }
 
 function sendAjaxRequest(element, location, start_date, end_date) {

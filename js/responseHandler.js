@@ -46,6 +46,7 @@ function handleResponse(input) {
     errorbox.innerHTML = errorHTML;
   } else {
     drawDashboard(response);
+    hideLoader()
   }
 }
 
@@ -54,4 +55,12 @@ function resetErrors(location, start_date, end_date, errorbox) {
   start_date.style.border = "1px solid #ccc";
   end_date.style.border = "1px solid #ccc";
   errorbox.style.display = "none";
+}
+
+function hideLoader() {
+  numberOfAjaxRequests--;
+  if(numberOfAjaxRequests == 0) {
+    var loader = document.getElementById("loader");
+    loader.style.display = "none";
+  }
 }
