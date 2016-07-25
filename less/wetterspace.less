@@ -25,7 +25,7 @@ body {
 		}
 	}
 
-	.navbar-nav {	
+	.navbar-nav {
 		color: @main_txt_color;
 		> li {
 			> a {
@@ -45,7 +45,7 @@ body {
 	background-color: #ff1a1a;
 	font-family: sans-serif;
 	font-size: 150%;
-	margin-top: -40px;	
+	margin-top: -40px;
 }
 
 .deleteButton{
@@ -56,11 +56,39 @@ body {
 
 #homeButton{
   	margin-left: 300px;
-
 }
 
 .footer {
 	background-color: @main_bg_color;
 	min-height: 85px;
 	color: #fff;
+}
+
+#loader {
+	border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid @main_bg_color; /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1.5s linear infinite;
+	margin-left: 50%;
+	margin-top: 5em;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+html, body {
+  height: 100%;
+}
+.main-content {
+  min-height: 100%;
+  margin-bottom: -85px;
+}
+.main-content:after {
+  content: "";
+  display: block;
+  height: 85px;
 }
