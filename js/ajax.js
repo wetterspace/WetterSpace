@@ -13,21 +13,21 @@ function makeAjaxRequest() {
   var location = document.getElementById("address").value;
   var start_date = document.getElementById("start_date").value;
   var end_date = document.getElementById("end_date").value;
-  var elements;
+  var elements = getRequestedElements();;
 
-  if(location != currentLocation) {
-    elements = getRequestedElements();
-    execAjaxForElements(elements, location, start_date, end_date);
-  } else {
-    // same location
-    if(start_date != currentStartDate || end_date != currentEndDate) {
-      elements = getRequestedElements();
+  if(elements.length > 0) {
+    if(location != currentLocation) {
       execAjaxForElements(elements, location, start_date, end_date);
     } else {
-      // same location and same dates
-      // check checkboxes
-      elements = getNewRequestedElement();
-      execAjaxForElements(elements, location, start_date, end_date);
+      // same location
+      if(start_date != currentStartDate || end_date != currentEndDate) {
+        execAjaxForElements(elements, location, start_date, end_date);
+      } else {
+        // same location and same dates
+        // check checkboxes
+        elements = getNewRequestedElement();
+        if(elements.length > 0) execAjaxForElements(elements, location, start_date, end_date);  
+      }
     }
   }
 
@@ -119,7 +119,7 @@ function getNewRequestedElement() {
   var requestElements = [];
   for (var i = 0; i < checkboxes.length; i++) {
     var divID = document.getElementById(checkboxes[i].dataset.element + "_dashboard");
-    if(checkboxes[i].checked && !divID) {
+    if(checkboxes[i].checked && divID == null) {
       requestElements.push(checkboxes[i].dataset.element);
     }
   }
