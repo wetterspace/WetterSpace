@@ -91,9 +91,13 @@ function createDashboardAndGetId(element) {
   if(!document.getElementById(dashboardId)) {
     var dashboardDiv = document.createElement("div");
     var chartsDiv = document.getElementById("charts");
-    dashboardDiv.setAttribute("class","dashboardDivArea fade-in");
+
+    var loader = document.getElementById("loader");
+
+    dashboardDiv.setAttribute("class","dashboardDivArea");
     dashboardDiv.setAttribute("id", dashboardId);
-    chartsDiv.appendChild(dashboardDiv);
+    // chartsDiv.prependChild(dashboardDiv);
+    chartsDiv.insertBefore(dashboardDiv, loader);
   }
 
   return dashboardId;

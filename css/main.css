@@ -6757,7 +6757,7 @@ body {
 }
 .deleteButton {
   margin: 10px 0px 20px 0px;
-  position: realtive;
+  position: relative;
   float: right;
 }
 #homeButton {
@@ -6779,6 +6779,7 @@ body {
   animation: spin 1.5s linear infinite;
   margin-left: 50%;
   margin-top: 5em;
+  margin-bottom: 5em;
 }
 @keyframes spin {
   0% {

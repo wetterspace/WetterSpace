@@ -11,6 +11,7 @@ function handleResponse(input) {
   var key = Object.keys(response)[0]
 
   if(key == "errors") {
+    hideLoader()
     //innerHTML problems with IE
     errorbox.style.display = "block";
     var errorHTML = "<ul style='list-style-type:disc'>";
