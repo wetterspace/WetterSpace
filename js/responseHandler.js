@@ -57,11 +57,3 @@ function resetErrors(location, start_date, end_date, errorbox) {
   end_date.style.border = "1px solid #ccc";
   errorbox.style.display = "none";
 }
-
-function hideLoader() {
-  numberOfAjaxRequests--;
-  if(numberOfAjaxRequests == 0) {
-    var loader = document.getElementById("loader");
-    loader.style.display = "none";
-  }
-}

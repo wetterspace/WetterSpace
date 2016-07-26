@@ -1,4 +1,5 @@
 var currentMarker;
+var geocoder;
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -6,7 +7,7 @@ function initMap() {
    center: {lat: 50.9173203, lng: 11.3905368}
  });
 
-  var geocoder = new google.maps.Geocoder();
+  geocoder = new google.maps.Geocoder();
   zoomToPositionOnChange(map, geocoder);
 
   map.addListener('click', function(e) {

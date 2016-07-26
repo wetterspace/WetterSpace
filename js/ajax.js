@@ -16,21 +16,27 @@ function makeAjaxRequest() {
   var elements = getRequestedElements();
 
   if(location != currentLocation || start_date != currentStartDate || end_date != currentEndDate) {
-    deleteDashboards();
+    // Changed seach parameters. all charts have to be redrawn
+    // delete all dashboards and get all checked elements
+    deleteAllDashboards();
     elements = getRequestedElements();
     if(elements.length > 0) {
       execAjaxForElements(elements, location, start_date, end_date);
     }
+    // update stored search parameters
+    currentLocation = location;
+    currentStartDate = start_date;
+    currentEndDate = end_date;
   } else if(elements.length > 0) {
+    // Same search parameters but there are new elements checked
     execAjaxForElements(elements, location, start_date, end_date);
+  } else {
+    // no new elements no changed search parameters. just check if element is checked off
+    deleteNotUsedDashboards();
   }
-
-  currentLocation = location;
-  currentStartDate = start_date;
-  currentEndDate = end_date;
 }
 
-function deleteDashboards() {
+function deleteAllDashboards() {
   var dashboards = document.getElementsByClassName("dashboardDivArea");
   for (var i = dashboards.length -1; i >= 0; i--) {
     dashboards[i].parentNode.removeChild(dashboards[i]);
@@ -38,32 +44,34 @@ function deleteDashboards() {
 }
 
 function execAjaxForElements(elements, location, start_date, end_date) {
-  if(isNaN(location)) {
-    var geocoder = new google.maps.Geocoder();
+  unhideLoader();
 
+  if(isNaN(location)) {
+    // if the location is not a number we use the geocoder to get the lat and lang of the city name
     geocoder.geocode({ 'address': location, componentRestrictions: {country: 'DE'}}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         if(results[0].partial_match == null) {
+          // first result is the best result, google returns more locations and turn the partial_match boolean true
           var lat = results[0].geometry.location.lat();
           var lng = results[0].geometry.location.lng();
-          console.log(results[0]);
           var latlng = {"lat": lat, "lng": lng};
-          unhideLoader();
+
           for (var i = 0; i < elements.length; i++) {
             numberOfAjaxRequests++;
+            // Ajax request using geodata instead of zipcode
             sendAjaxRequest(elements[i], latlng, start_date, end_date);
           }
         } else {
-          // to get the error @TODO change this
-          sendAjaxRequest(elements[i], location, start_date, end_date);
+          // one single request to make sure that this location results in an error
+          numberOfAjaxRequests++;
+          sendAjaxRequest(elements[0], location, start_date, end_date);
         }
       } else {
-        unhideLoader();
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
   } else {
-    unhideLoader();
+    // location is a number, probably a zip code
     for (var i = 0; i < elements.length; i++) {
       numberOfAjaxRequests++;
       sendAjaxRequest(elements[i], location, start_date, end_date);
@@ -74,6 +82,14 @@ function execAjaxForElements(elements, location, start_date, end_date) {
 function unhideLoader() {
   var loader = document.getElementById("loader");
   loader.style.display = "block";
+}
+
+function hideLoader() {
+  numberOfAjaxRequests--;
+  if(numberOfAjaxRequests == 0) {
+    var loader = document.getElementById("loader");
+    loader.style.display = "none";
+  }
 }
 
 function sendAjaxRequest(element, location, start_date, end_date) {
@@ -91,9 +107,11 @@ function sendAjaxRequest(element, location, start_date, end_date) {
   parameters += "&end_date=" + end_date;
   parameters += "&element=" + element;
 
-  request.open("POST", url, true);
+  url = url + "?"+ parameters;
+
+  request.open("GET", url, true);
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  request.send(parameters);
+  request.send();
 
   request.onreadystatechange = function() {
     if (request.readyState == 4 && request.status == 200) {
@@ -105,29 +123,20 @@ function sendAjaxRequest(element, location, start_date, end_date) {
   }
 }
 
-// function getRequestedElements() {
-//   var checkboxes = document.getElementsByClassName("metrics_checkbox");
-//   var requestElements = [];
-//   for (var i = 0; i < checkboxes.length; i++) {
-//     if(checkboxes[i].checked) requestElements.push(checkboxes[i].dataset.element);
-//   }
-//   return requestElements;
-// }
-
-function getRequestedElements(getAllElements) {
+function getRequestedElements() {
   // only returns the elements for which no chart exists
   var checkboxes = document.getElementsByClassName("metrics_checkbox");
   var requestElements = [];
   for (var i = 0; i < checkboxes.length; i++) {
-    var divID = document.getElementById(checkboxes[i].dataset.element + "_dashboard");
-    if((checkboxes[i].checked && divID == null)) {
+    var dashboardID = document.getElementById(checkboxes[i].dataset.element + "_dashboard");
+    if(checkboxes[i].checked && dashboardID == null) {
       requestElements.push(checkboxes[i].dataset.element);
     }
   }
   return requestElements;
 }
 
-function deleteNotUsedCharts() {
+function deleteNotUsedDashboards() {
   var checkboxes = document.getElementsByClassName("metrics_checkbox");
   var chartsDiv = document.getElementById("charts");
 
