@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>WetterSpace</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="icon" href="img/mapMarkerNor.png">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,900,500,700' rel='stylesheet' type='text/css'>
+    <!-- Custom CSS -->
+    <style>
+      body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+      }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+          
+          
+          <!-- Bootstrap Core JavaScript -->
+          <!-- <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" async></script> -->
+          <!-- google maps -->
+         
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+          </script>
+          <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+          <!-- jQuery Version 1.11.1 -->
+          <script src="bower_components/jquery/dist/jquery.min.js"></script>
+          <script src="bower_components/jquery-sticky/jquery.sticky.js"></script>
+          <script src="js/responseHandler.js"></script>
+          <script src="js/ajax.js"></script>
+          <script src="js/initializor.js"></script>
+
+        </head>
+
+        <body>
+
+          <!-- Navigation -->
+          <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img src="img/logo.png" /></a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                 <div id="homeButton">
+                  <button  type="button" class="btn btn-primary  pull-right" onclick="window.location.href='home.html'">
+                      <span class="glyphicon glyphicon-home"></span>
+                      Home
+                  </button>
+               </div>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container-fluid main-content">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-muted">Impressum</h1>
+        <br>
+        <p>
+          <strong>Herausgeber</strong>
+          <br>
+            WetterSpace Team & Hochschule für Technik und Wirtschaft Berlin
+          <br>
+          <br>
+        </p>
+        <p>
+          <strong>Kontakt</strong>
+          <br>
+
+          Anschrift: Wilhelminenhofstraße 75A
+          <br>
+          12459 Berlin
+          <br>
+          E-Mail: 
+          <a href="mailto:team@wetter.space">team@wetter.space</a>
+          <br>
+          <br>
+        </p>
+        <p>
+          <strong>WetterSpace Team</strong>
+          
+          <br>
+          Vincenz Dziedzina
+          <br>
+          Alex Sturhan
+          <br>
+          Ralitsa Docheva
+          <br>
+          Florian Weber
+          <br>
+          Thu Hien Tran
+        </p>
+      </div>
+    </div>
+
+  
+   </div>
+  <!-- Footer -->
+  <div class="footer container-fluid navbar-fixed-bottom">
+    <div class="row">
+     <div class="col-md-10 impressum">
+     <h4>Impressum</h4>
+     <p>© 2016 WetterSpace Team. Designed and Developed by us</a></p>
+     </div>
+     <div class="col-md-2">
+     <img id="logoDWD" src="img/dwd.png" />
+     </div>
+   </div>
+  </div>
+  <!-- /.footer -->
+  </body>
+</html>
