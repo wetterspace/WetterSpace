@@ -3,9 +3,8 @@ window.onload = function() {
   addDateValidation();
   addEnterEvent();
 
-  window.addEventListener('resize', redrawOnResize) 
+  window.addEventListener('resize', redrawOnResize)
 
   google.charts.load('current', {'packages':['corechart', "controls"]});
-  // google.charts.setOnLoadCallback(drawBackgroundColor);
    $("#weatherMetrics").sticky({topSpacing:40});
 }
