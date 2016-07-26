@@ -174,7 +174,8 @@ footer
 {
     background-color: rgba(2, 110, 159, 1);
     padding-top: 2em;
-    padding-bottom: 1.2em;
+    // padding-bottom: 1.2em;
+    
 }
 
 footer h1,
@@ -186,6 +187,10 @@ footer h6,
 footer p
 {
     color: #FFFFFF;
+}
+
+#logoDWD{
+    margin-bottom: 30px;
 }
 
 .social
