@@ -15,7 +15,7 @@ function handleResponse(input) {
     errorbox.innerHTML = processErrorsAndGetHTML(response["errors"], errorbox, location, start_date, end_date);
 
   } else {
-    drawDashboards(response);
+    drawDashboard(response);
     hideLoader()
   }
 }
