@@ -1,6 +1,6 @@
 var chartsDataTables = [];
 
-function drawDashboard(responseData) {
+function drawDashboards(responseData) {
   var element  = responseData[0]["element"];
   element = element.replace(/ae/g,"ä").replace(/oe/g,"ö").replace(/ue/g,"ü");
 
@@ -91,12 +91,12 @@ function createDashboardAndGetId(element) {
   if(!document.getElementById(dashboardId)) {
     var dashboardDiv = document.createElement("div");
     var chartsDiv = document.getElementById("charts");
-
     var loader = document.getElementById("loader");
 
     dashboardDiv.setAttribute("class","dashboardDivArea");
     dashboardDiv.setAttribute("id", dashboardId);
-    // chartsDiv.prependChild(dashboardDiv);
+    // @TODO improve this bit
+    // dashboardDiv.dataset.element = dashboardId.replace(/_dashboard/g,"");
     chartsDiv.insertBefore(dashboardDiv, loader);
   }
 
