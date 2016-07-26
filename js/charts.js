@@ -1,6 +1,6 @@
 var chartsDataTables = [];
 
-function drawDashboard(responseData) {
+function drawDashboards(responseData) {
   var element  = responseData[0]["element"];
   element = element.replace(/ae/g,"ä").replace(/oe/g,"ö").replace(/ue/g,"ü");
 
