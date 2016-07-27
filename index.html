@@ -44,15 +44,14 @@
             <div class="container-fluid">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
-                <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                   <span class="sr-only">Toggle navigation</span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
-                </button> -->
+                </button>
                 <a class="navbar-brand" href="index.html"><img src="img/logo.png" /></a>
               </div>
-
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left" role="search">
@@ -60,22 +59,16 @@
                     <input id="address" type="textbox" class="form-control" placeholder="ZIP code" value="">
                     <input id="start_date" type="date" class="form-control" placeholder="Start Date" value="">
                     <input id="end_date" type="date" class="form-control" placeholder="End Date" value="">
-                    <input id="submit" type="button" value="Search" class="btn btn-default">
-                    
+                    <input id="submit" type="button" value="Search" class="btn btn-default">                    
                   </div>
-
                </form>
-               <div id="homeButton">
+               <div id="homeButton" class="form-group">
                   <button  type="button" class="btn btn-primary  pull-right" onclick="window.location.href='home.html'">
                       <span class="glyphicon glyphicon-home"></span>
                       Home
                   </button>
                </div>
               </div><!-- /.navbar-collapse -->
-              <div>
-              <!-- <button id="homeButton" type="button" class="nav navbar-nav btn btn-primary" onclick="window.location.href='index.html'">Home</button> -->
-
-              </div>
             </div><!-- /.container-fluid -->
           </nav>
 
@@ -141,7 +134,7 @@
      <div class="col-md-10">
        <a class="impressum" href="impressum.html" ><h4>Impressum</h4>
        </a>
-       <p>© 2016 WetterSpace Team. Designed and Developed by us</a></p>
+       <p>© 2016 WetterSpace Team. Designed and Developed by us</p>
      </div>
      <div class="col-md-2">
      <img id="logoDWD" src="img/dwd.png" />
@@ -149,5 +142,9 @@
    </div>
   </div>
   <!-- /.footer -->
+
+  <!-- Bootstrap Core JavaScript -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
   </body>
 </html>
