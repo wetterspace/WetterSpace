@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Vincenz D.">
+    <title>WetterSpaceApi</title>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="css/api.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="row navbar">
+      <div class="col-md-12">
+        <nav>
+          <a class="navbar-brand" href="index.html"><img src="img/logo.png" /></a>
+          <div id="homeButton">
+             <button  type="button" class="btn btn-primary  pull-right" onclick="window.location.href='home.html'">
+                 <span class="glyphicon glyphicon-home"></span>
+                 Home
+             </button>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <header>
+      <div class="row">
+        <div class=col-md-12>
+          <h1>WetterSpace API</h1>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2>Vorstellung</h2>
+          <p>Die <em>WetterSpace API</em> bietet die Möglichkeit Wetterdaten der letzten Jahre für verschiedene Elemente abrufen zu können</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2>Aufbau einer Anfrage</h2>
+          <p>Eine Abfrage erfolgt über eine <em>GET- oder Post-Request</em> an folgende URL:
+            <br><strong>https://www.wetter.space/cgi-bin/jsonGenerator.cgi</strong></p>
+          <p>Die Parameter für die Abfrage werden dabei an die URL angehängt.Wichtig ist hierbei die
+            richtige Codierung der Abfrage, da bei einigen Elementen ein Leerzeichen vorkommt.
+            In diesem Fall ersetzen Sie das Leerzeichen mit <em>%20</em>.
+            Eine Abfrage ist auch mit der POST Methode möglich.
+            Das Ergebnis wird in FORM eines JSON Arrays zurückgegeben.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2>Parameter</h2>
+          <table>
+            <tr>
+              <th>Parameter</th>
+              <th>Werte/Richtlinien</th>
+            </tr>
+            <tr>
+              <td>location</td>
+              <td>Deutsche Postleitzahl</td>
+            </tr>
+            <tr>
+              <td>lat</td>
+              <td>Geografische Breite</td>
+            </tr>
+            <tr>
+              <td>long</td>
+              <td>Geografische Länge</td>
+            </tr>
+            <tr>
+              <td>start_date</td>
+              <td>Datum im Format: YYYY-MM-DD</td>
+            </tr>
+            <tr>
+              <td>end_date</td>
+              <td>Datum im Format: YYYY-MM-DD</td>
+            </tr>
+            <tr>
+              <td>element</td>
+              <td>Eines der folgenden Elemente:
+                <ul>
+                  <li>Lufttemperatur Tagesmaximum</li>
+                  <li>Lufttemperatur Tagesminimum</li>
+                  <li>Lufttemperatur Tagesmittel</li>
+                  <li>Neuschneehöhe</li>
+                  <li>Niederschlagshöhe</li>
+                  <li>Relative Luftfeuchte</li>
+                  <li>Schneehöhe</li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2>Errors</h2>
+          <p>Im Fall, dass es auf dem Server zu einem Problem bei der Abfrage kam, werden die folgenden Error-Nachrichten zurückgegeben.
+            Dabei werden die Elemente zurückgegeben, die die Ursache für den Fehler darstellen.</p>
+          <ul class=margin-left>
+            <li>
+              no data
+            </li>
+            <li>
+              no database
+            </li>
+            <li>
+              no valid zip code
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2>Beispiel</h2>
+          <div class=margin-left>
+            <a target="_blank" href="https://www.wetter.space/cgi-bin/jsonGenerator.cgi?location=12277&start_date=2014-07-01&end_date=2014-07-05&element=Lufttemperatur%20Tagesmittel">https://www.wetter.space/cgi-bin/jsonGenerator.cgi?location=12277&start_date=2014-07-01&end_date=2014-07-05&element=Lufttemperatur%20Tagesmittel</a>
+          </div>
+          <p>Diese Anfrage erhält folgende Antwort in Form eines JSON Arrays:</p>
+          <div class="margin-left">
+            <code>
+              [{"location":"433","wert":"16,2","einheit":"Grad C","date":"2014-07-01","element":"Lufttemperatur Tagesmittel"},<br>
+              {"location":"433","wert":"16,5","einheit":"Grad C","date":"2014-07-02","element":"Lufttemperatur Tagesmittel"},<br>
+              {"location":"433","wert":"19,0","einheit":"Grad C","date":"2014-07-03","element":"Lufttemperatur Tagesmittel"},<br>
+              {"location":"433","wert":"24,0","einheit":"Grad C","date":"2014-07-04","element":"Lufttemperatur Tagesmittel"},<br>
+              {"location":"433","wert":"23,8","einheit":"Grad C","date":"2014-07-05","element":"Lufttemperatur Tagesmittel"}]
+            </code>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="row">
+        <div class="col-md-10 impressum">
+          <a class="impressum" href="impressum.html" ><h4>Impressum</h4></a>
+          <p>© 2016 WetterSpace Team. Designed and Developed by us</a></p>
+        </div>
+        <div class="col-md-2">
+          <img id="logoDWD" src="img/dwd.png" />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

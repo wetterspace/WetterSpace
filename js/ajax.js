@@ -109,6 +109,8 @@ function sendAjaxRequest(element, location, start_date, end_date) {
 
   url = url + "?"+ parameters;
 
+  console.log(url);
+
   request.open("GET", url, true);
   request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   request.send();

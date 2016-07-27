@@ -1,0 +1,59 @@
+footer {
+  background-color: #006E9F;
+  padding-top: 30px;
+  padding-bottom: 25px;
+  margin-top: 2em;
+}
+footer h4,
+footer p {
+  color: #fff;
+}
+.navbar {
+  background-color: #006E9F;
+  padding-bottom: 30px;
+}
+.navbar button {
+  margin-top: 22px;
+  margin-right: 20px;
+}
+h1 {
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 3em;
+}
+h2 {
+  font-size: 2.5em;
+}
+.row {
+  margin-left: auto;
+  margin-right: auto;
+}
+p {
+  font-size: 1.4em;
+  margin-left: 2em;
+}
+table {
+  border-collapse: collapse;
+  font-size: 1.3em;
+  margin-left: 2em;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  padding: 0.5em;
+  vertical-align: top;
+  margin-bottom: 1em;
+}
+.margin-left {
+  margin-left: 2em;
+  font-size: 1.4em;
+}
+.exampleResponse {
+  margin-top: 2em;
+  border: 1px dashed black;
+}
+a {
+  font-size: 1.2em;
+}
