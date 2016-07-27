@@ -36,7 +36,11 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <h2>Vorstellung</h2>
-          <p>Die <em>WetterSpace API</em> bietet die Möglichkeit Wetterdaten der letzten Jahre für verschiedene Elemente abrufen zu können</p>
+          <p>Wir haben es uns zur Aufgabe gemacht, die Wetterdaten Deutschlands der letzten Jahre
+            für jeden zugänglich zu machen. Das Fundament für dieses Unterfangen bildet unsere
+            <em>WetterSpace API</em>. Dieser Service bezieht regelmäßig die aktuellen Daten des Deutschen
+            Wetterdienstes und bereitet sie so auf, dass sie von Programmierern genutzt werden
+            können. Sie ermöglicht es, auf unkompliziertem Weg, spezifische Wetterdaten für bestimmte Zeiträume zu erhalten. </p>
         </div>
       </div>
       <div class="row">
@@ -46,9 +50,9 @@
             <br><strong>https://www.wetter.space/cgi-bin/jsonGenerator.cgi</strong></p>
           <p>Die Parameter für die Abfrage werden dabei an die URL angehängt.Wichtig ist hierbei die
             richtige Codierung der Abfrage, da bei einigen Elementen ein Leerzeichen vorkommt.
-            In diesem Fall ersetzen Sie das Leerzeichen mit <em>%20</em>.
-            Eine Abfrage ist auch mit der POST Methode möglich.
-            Das Ergebnis wird in FORM eines JSON Arrays zurückgegeben.</p>
+            In diesem Fall ersetzen Sie das Leerzeichen mit <em>%20</em>. Bei der Abfrage kann entweder
+             eine Postleitzahl oder geografische Koordinaten verwendet werden.
+            Das Ergebnis wird in Form eines JSON Arrays zurückgegeben.</p>
         </div>
       </div>
       <div class="row">
@@ -99,8 +103,8 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
           <h2>Errors</h2>
-          <p>Im Fall, dass es auf dem Server zu einem Problem bei der Abfrage kam, werden die folgenden Error-Nachrichten zurückgegeben.
-            Dabei werden die Elemente zurückgegeben, die die Ursache für den Fehler darstellen.</p>
+          <p>Im Fall, dass es auf dem Server zu einem Problem bei der Abfrage kommt, werden die folgenden Error-Nachrichten zurückgegeben.
+            Dabei werden die Elemente zusätzlich angegeben, die die Ursache für den Fehler sind.</p>
           <ul class=margin-left>
             <li>
               no data
@@ -112,6 +116,20 @@
               no valid zip code
             </li>
           </ul>
+          <table class=margin-left>
+            <tr>
+              <td>no data</td>
+              <td>Es existieren keine Daten für die angegebenen Parameter</td>
+            </tr>
+            <tr>
+              <td>no database</td>
+              <td>Es existiert keine Datenbank für die angegebenen Parameter (location oder lat/long) </td>
+            </tr>
+            <tr>
+              <td>no valid zip code</td>
+              <td>Die angegebene Postleitzahl ist nicht gültig</td>
+            </tr>
+          </table>
         </div>
       </div>
       <div class="row">
