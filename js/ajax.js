@@ -4,9 +4,12 @@ var currentLocation;
 var numberOfAjaxRequests = 0;
 
 function addAjaxEvent() {
-  document.getElementById("submit").onclick = function() {
-    makeAjaxRequest();
-  };
+  var submitButtons = document.getElementsByClassName("submit");
+  for (var i = 0; i < submitButtons.length; i++) {
+    submitButtons[i].onclick = function() {
+      makeAjaxRequest();
+    };
+  }
 }
 
 function makeAjaxRequest() {
