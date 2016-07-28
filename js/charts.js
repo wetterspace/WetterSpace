@@ -37,7 +37,8 @@ function drawGoogleDashboard(chartData, units, dashboardId, sliderId, chartId, t
               "filterColumnIndex" : 0,
               "ui" : {
                 "chartOptions" : {
-                  "height" : 50
+                  "height" : 50,
+                  "interpolateNulls" : true
                 }
               }
             }
@@ -153,18 +154,21 @@ function getDataArray(data) {
   var result = [];
   var elements = [];
   var counter = 0;
+  data = data.sort(sortOnArgLen);
   for (var i = 0; i < data.length; i++) {
     var currentDataset = data[i];
     if(elements.indexOf(currentDataset[0]["element"]) == -1) {
       elements.push(currentDataset[0]["element"]);
-      for(x = 0; x < currentDataset.length; x++) {
-        var date = currentDataset[x]["date"];
-        date = convertToDate(date);
-
-        var value = currentDataset[x]["wert"];
-        value = parseFloat(value.replace(",", "."));
+      for(x = 0; x < data[0].length; x++) {
+        if(currentDataset[x]) {
+          var value = currentDataset[x]["wert"];
+          value = parseFloat(value.replace(",", "."));
+        } else var value = null;
 
         if(counter == 0) {
+          var date = currentDataset[x]["date"];
+          date = convertToDate(date);
+
           result[x] = [];
           result[x][0] = date;
           result[x][1] = value;
@@ -175,8 +179,16 @@ function getDataArray(data) {
       counter++;
     }
   }
-
   return result;
+}
+
+function sortOnArgLen(arg1,arg2) {
+  if(arg1.length > arg2.length)
+    return -1;
+  if(arg1.length < arg2.length)
+    return 1;
+  if(arg1.length == arg2.length)
+    return 0;
 }
 
 function uncheckButtons(id) {
