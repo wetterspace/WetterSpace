@@ -55,7 +55,10 @@ function geocodeLatLng(latLng, map, geocoder) {
             alert("location not found");
         }
     } else {
-        alert("Geocoder failed due to: " + status);
+      if(status == "ZERO_RESULTS") {
+        var locationInputField = document.getElementById("address");
+        locationInputField.value = "Keine Adresse";
+      } else alert("Geocoder failed due to: " + status);
     }
   });
 }
