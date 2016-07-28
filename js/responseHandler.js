@@ -13,7 +13,7 @@ function handleResponse(input) {
     hideLoader()
     errorbox.style.display = "block";
     errorbox.innerHTML = processErrorsAndGetHTML(response["errors"], errorbox, location, start_date, end_date);
-
+    window.scrollTo(0, 0);
   } else {
     drawDashboard(response);
     hideLoader()
