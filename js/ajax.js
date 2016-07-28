@@ -19,9 +19,14 @@ function makeAjaxRequest() {
   var elements = getRequestedElements();
 
   if(start_date == "") {
+    // Having nothing as a parameter results in error on the server
+    // We fake an response with an error, that is why we have to increase the
+    // numberOfAjaxRequests so that it can get decremented in the responsehandler to avoid infinite loading
     handleResponse(JSON.stringify({"errors":{"start_date":"Kein gültiges Start-Datum"}}));
+    numberOfAjaxRequests++;
   } else if(end_date == "") {
     handleResponse(JSON.stringify({"errors":{"end_date":"Kein gültiges End-Datum"}}));
+    numberOfAjaxRequests++;
   } else if(location != currentLocation || start_date != currentStartDate || end_date != currentEndDate) {
     // Changed seach parameters. all charts have to be redrawn
     // delete all dashboards and get all checked elements
