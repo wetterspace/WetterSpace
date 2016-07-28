@@ -21,7 +21,7 @@ function makeAjaxRequest() {
   if(start_date == "") {
     handleResponse(JSON.stringify({"errors":{"start_date":"Kein gültiges Start-Datum"}}));
   } else if(end_date == "") {
-    handleResponse(JSON.stringify({"errors":{"end_date":"Kein gültiges Start-Datum"}}));
+    handleResponse(JSON.stringify({"errors":{"end_date":"Kein gültiges End-Datum"}}));
   } else if(location != currentLocation || start_date != currentStartDate || end_date != currentEndDate) {
     // Changed seach parameters. all charts have to be redrawn
     // delete all dashboards and get all checked elements
