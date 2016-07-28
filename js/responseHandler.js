@@ -8,7 +8,7 @@ function handleResponse(input) {
   resetErrors(location, start_date,end_date, errorbox);
 
   var key = Object.keys(response)[0]
-
+  console.log(input);
   if(key == "errors") {
     hideLoader()
     errorbox.style.display = "block";
